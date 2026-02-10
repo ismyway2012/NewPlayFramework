@@ -1,0 +1,34 @@
+{
+  "name": "com.gameframex.unity.setting",
+  "displayName": "Game Frame X Setting",
+  "category": "Game Framework X",
+  "description": "独立游戏前后端一体化解决方案,独立游戏开发者的圆梦大使。\n文档地址: https://gameframex.doc.alianblank.com \n Game Frame X Setting组件 - Unity设置功能包，提供设置功能，使设置功能的使用更加简单高效。",
+  "version": "1.1.0",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.setting",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.setting.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {
+    "com.gameframex.unity": "1.1.1"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "8a322f5b7af54168e607a7f8773cd97d09463544"
+}

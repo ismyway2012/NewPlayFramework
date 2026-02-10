@@ -1,0 +1,37 @@
+[
+  {
+    "ID": 1,
+    "LvPfbName": "Lv_1",
+    "InitMoney": 200,
+    "MoneyColorId": 1,
+    "LvDisplayName": "Level.DisplayName1"
+  },
+  {
+    "ID": 2,
+    "LvPfbName": "Lv_1",
+    "InitMoney": 160,
+    "MoneyColorId": 5,
+    "LvDisplayName": "Level.DisplayName2"
+  },
+  {
+    "ID": 3,
+    "LvPfbName": "Lv_1",
+    "InitMoney": 315,
+    "MoneyColorId": 6,
+    "LvDisplayName": "Level.DisplayName3"
+  },
+  {
+    "ID": 4,
+    "LvPfbName": "Lv_1",
+    "InitMoney": 210,
+    "MoneyColorId": 6,
+    "LvDisplayName": "Level.DisplayName4"
+  },
+  {
+    "ID": 5,
+    "LvPfbName": "Lv_1",
+    "InitMoney": 315,
+    "MoneyColorId": 3,
+    "LvDisplayName": "Level.DisplayName5"
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "name": "com.gameframex.unity.builder",
+  "displayName": "Game Frame X Builder",
+  "category": "Game Framework",
+  "description": "独立游戏前后端一体化解决方案 https://gameframex.doc.alianblank.com/",
+  "version": "2.0.2",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework"
+  ],
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "repository": {
+    "name": "com.gameframex.unity.builder",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.builder.git",
+    "type": "git"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "d1b9e3b70ae757111a759cc542afde38d70b30be"
+}

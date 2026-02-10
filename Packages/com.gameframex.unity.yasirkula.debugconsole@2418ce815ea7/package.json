@@ -1,0 +1,30 @@
+{
+  "name": "com.gameframex.unity.yasirkula.debugconsole",
+  "displayName": "Debug Console",
+  "version": "1.7.0",
+  "documentationUrl": "https://github.com/yasirkula/UnityIngameDebugConsole",
+  "changelogUrl": "https://github.com/yasirkula/UnityIngameDebugConsole/releases",
+  "licensesUrl": "https://github.com/yasirkula/UnityIngameDebugConsole/blob/master/LICENSE.txt",
+  "description": "This asset helps you see debug messages (logs, warnings, errors, exceptions) runtime in a build (also assertions in editor) and execute commands using its built-in console. It also supports logging logcat messages to the console on Android platform.",
+  "hideInEditor": false,
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "repository": {
+    "name": "com.gameframex.unity.yasirkula.debugconsole",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.yasirkula.debugconsole.git",
+    "type": "git"
+  },
+  "_fingerprint": "2418ce815ea78af06ce0be086d2600323ad770fe"
+}

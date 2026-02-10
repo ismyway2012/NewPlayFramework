@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.scene",
+  "displayName": "Game Frame X Scene",
+  "category": "Game Framework X",
+  "description": "Game Frame X Scene Component",
+  "version": "2.1.0",
+  "unity": "2017.1",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.scene",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.scene.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "ef2ec4df4ddd9435d6e5e003a701c70acc919fb6"
+}

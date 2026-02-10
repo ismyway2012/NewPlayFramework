@@ -1,0 +1,25 @@
+{
+  "name": "GameFrameX.Web.ProtoBuff.Runtime",
+  "rootNamespace": "GameFrameX.Web.ProtoBuff.Runtime",
+  "references": [
+    "GameFrameX.Runtime",
+    "GameFrameX.Web.Runtime",
+    "GameFrameX.Network.Runtime",
+    "ProtoBuffer.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [
+    {
+      "name": "com.gameframex.unity.network",
+      "expression": "",
+      "define": "ENABLE_GAME_FRAME_X_WEB_PROTOBUF_NETWORK"
+    }
+  ],
+  "noEngineReferences": false
+}

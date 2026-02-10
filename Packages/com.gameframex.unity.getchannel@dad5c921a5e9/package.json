@@ -1,0 +1,34 @@
+{
+  "name": "com.gameframex.unity.getchannel",
+  "displayName": "Game Frame X Get Channel",
+  "version": "1.2.0",
+  "unity": "2017.1",
+  "description": "获取渠道信息",
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "samples": [
+    {
+      "displayName": "Samples",
+      "description": "Samples",
+      "path": "Samples~"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.getchannel.git",
+    "name": "com.gameframex.unity.getchannel"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "dad5c921a5e991ac223a37a2785928ed0f3957d7"
+}

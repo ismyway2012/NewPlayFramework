@@ -1,0 +1,35 @@
+{
+  "name": "com.gameframex.unity.gwiazdorrr.betterstreamingassets",
+  "displayName": "Better Streaming Assets",
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "version": "1.8.0",
+  "documentationUrl": "https://github.com/gwiazdorrr/BetterStreamingAssets",
+  "changelogUrl": "https://github.com/gwiazdorrr/BetterStreamingAssets",
+  "licensesUrl": "https://github.com/gwiazdorrr/BetterStreamingAssets/blob/master/LICENSE",
+  "description": "Access Streaming Assets directly in an uniform and thread-safe way, with tiny overhead.",
+  "samples": [
+    {
+      "displayName": "Better Streaming Assets Samples",
+      "path": "Samples~/BetterStreamingAssets"
+    }
+  ],
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "repository": {
+    "name": "com.gameframex.unity.gwiazdorrr.betterstreamingassets",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.gwiazdorrr.betterstreamingassets.git",
+    "type": "git"
+  },
+  "_fingerprint": "13c6672020281592e532c55acc5f3aae41a309ef"
+}

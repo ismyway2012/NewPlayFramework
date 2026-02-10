@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.event",
+  "displayName": "Game Frame X Event",
+  "category": "Game Framework X",
+  "description": "Game Frame X Event Component",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.event",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.event.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "7937b4d92d98f0911c9ba8994c5ee2d4d95ff08c"
+}

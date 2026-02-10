@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.focus-creative-games.luban",
+  "displayName": "Game Frame X LuBan Config",
+  "category": "Game Framework X",
+  "description": "独立游戏前后端一体化解决方案 https://gameframex.doc.alianblank.com/",
+  "version": "2.1.0",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.focus-creative-games.luban",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.focus-creative-games.luban.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "40aa470346d0356dd1cbf3697e4c0c98581ceb4c"
+}

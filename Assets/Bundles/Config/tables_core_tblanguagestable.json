@@ -1,0 +1,37 @@
+[
+  {
+    "ID": 1,
+    "LanguageKey": "ChineseSimplified",
+    "AssetName": "ChineseSimplified",
+    "LanguageDisplay": "中文(简体)",
+    "LanguageIcon": "UI/Flags/Icon_Flag_chn.png"
+  },
+  {
+    "ID": 2,
+    "LanguageKey": "ChineseTraditional",
+    "AssetName": "ChineseTraditional",
+    "LanguageDisplay": "中文(繁體)",
+    "LanguageIcon": "UI/Flags/Icon_Flag_chn.png"
+  },
+  {
+    "ID": 3,
+    "LanguageKey": "English",
+    "AssetName": "English",
+    "LanguageDisplay": "English",
+    "LanguageIcon": "UI/Flags/Icon_Flag_eng.png"
+  },
+  {
+    "ID": 4,
+    "LanguageKey": "Japanese",
+    "AssetName": "Japanese",
+    "LanguageDisplay": "にほんご",
+    "LanguageIcon": "UI/Flags/Icon_Flag_jpn.png"
+  },
+  {
+    "ID": 5,
+    "LanguageKey": "Korean",
+    "AssetName": "Korean",
+    "LanguageDisplay": "한국어",
+    "LanguageIcon": "UI/Flags/Icon_Flag_kor.png"
+  }
+]

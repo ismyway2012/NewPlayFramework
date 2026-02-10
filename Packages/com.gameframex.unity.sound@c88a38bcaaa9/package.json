@@ -1,0 +1,36 @@
+{
+  "name": "com.gameframex.unity.sound",
+  "displayName": "Game Frame X Sound",
+  "category": "Game Framework X",
+  "description": "独立游戏前后端一体化解决方案,独立游戏开发者的圆梦大使。\n文档地址: https://gameframex.doc.alianblank.com \n Game Frame X Sound组件 - Unity音频功能包，提供音频播放、暂停、停止、音量控制等常用音频操作。支持多种音频格式，包括MP3、WAV、OGG等。采用现代C#开发中的异步/等待模式，使音频操作更加简单高效。",
+  "version": "1.1.0",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.sound",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.sound.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {
+    "com.gameframex.unity": "1.1.1",
+    "com.gameframex.unity.asset": "1.0.6",
+    "com.gameframex.unity.event": "1.0.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "c88a38bcaaa9cc184083a53ae290df5ffd6227fc"
+}

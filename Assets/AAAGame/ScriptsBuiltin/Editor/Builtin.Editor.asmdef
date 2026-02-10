@@ -1,0 +1,29 @@
+{
+    "name": "Builtin.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ec3f8951d35bb604593b14b4449d0387",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:13ba8ce62aa80c74598530029cb2d649",
+        "GUID:2373f786d14518f44b0f475db77ba4de",
+        "GUID:36c3e5aa5c29b6d4f818aaa3ed3c6937",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:6546d7765b4165b40850b3667f981c26",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:2c573e6b271651846a79655161004c5b",
+        "GUID:c3859067281c7aa4eb3b665ec30e3670",
+        "GUID:5761cb3054313014cab4ffaacc5b12a9",
+        "GUID:00aa3e3791886d34b82527d486ecc1b7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

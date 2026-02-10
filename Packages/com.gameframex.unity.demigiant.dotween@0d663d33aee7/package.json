@@ -1,0 +1,33 @@
+{
+  "name": "com.gameframex.unity.demigiant.dotween",
+  "displayName": "DoTween",
+  "version": "1.1.0",
+  "unity": "2018.4",
+  "description": "",
+  "keywords": [
+    "DoTween"
+  ],
+  "license": "MIT",
+  "category": "Tool",
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "repository": {
+    "name": "com.gameframex.unity.demigiant.dotween",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.demigiant.dotween.git",
+    "type": "git"
+  },
+  "_fingerprint": "0d663d33aee757ff3435cd3b5b94b91fe3c67b98"
+}

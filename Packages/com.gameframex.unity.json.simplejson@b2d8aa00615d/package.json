@@ -1,0 +1,29 @@
+{
+  "name": "com.gameframex.unity.json.simplejson",
+  "displayName": "SimpleJSON",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "description": "适用于Unity的改进型Json库",
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "relatedPackages": {},
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "repository": {
+    "name": "com.gameframex.unity.json.simplejson",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.json.simplejson.git",
+    "type": "git"
+  },
+  "_fingerprint": "b2d8aa00615df66a2962428c13eb4ee009eacd03"
+}

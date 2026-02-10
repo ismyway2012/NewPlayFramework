@@ -1,0 +1,82 @@
+[
+  {
+    "Id": 1,
+    "SortOrder": 1,
+    "UIPrefab": "MenuUIForm",
+    "PauseCoveredUI": true,
+    "UIGroupId": 1,
+    "EscapeClose": false
+  },
+  {
+    "Id": 2,
+    "SortOrder": 1,
+    "UIPrefab": "GameUIForm",
+    "PauseCoveredUI": true,
+    "UIGroupId": 1,
+    "EscapeClose": false
+  },
+  {
+    "Id": 3,
+    "SortOrder": 1,
+    "UIPrefab": "GameOverUIForm",
+    "PauseCoveredUI": true,
+    "UIGroupId": 1,
+    "EscapeClose": false
+  },
+  {
+    "Id": 4,
+    "SortOrder": 2,
+    "UIPrefab": "Topbar",
+    "PauseCoveredUI": false,
+    "UIGroupId": 1,
+    "EscapeClose": false
+  },
+  {
+    "Id": 5,
+    "SortOrder": 1,
+    "UIPrefab": "SettingDialog",
+    "PauseCoveredUI": true,
+    "UIGroupId": 2,
+    "EscapeClose": true
+  },
+  {
+    "Id": 6,
+    "SortOrder": 2,
+    "UIPrefab": "RatingDialog",
+    "PauseCoveredUI": true,
+    "UIGroupId": 2,
+    "EscapeClose": true
+  },
+  {
+    "Id": 7,
+    "SortOrder": 2,
+    "UIPrefab": "TermsOfServiceDialog",
+    "PauseCoveredUI": true,
+    "UIGroupId": 2,
+    "EscapeClose": true
+  },
+  {
+    "Id": 8,
+    "SortOrder": 3,
+    "UIPrefab": "CommonDialog",
+    "PauseCoveredUI": true,
+    "UIGroupId": 2,
+    "EscapeClose": false
+  },
+  {
+    "Id": 9,
+    "SortOrder": 2,
+    "UIPrefab": "LanguagesDialog",
+    "PauseCoveredUI": false,
+    "UIGroupId": 2,
+    "EscapeClose": true
+  },
+  {
+    "Id": 10,
+    "SortOrder": 1,
+    "UIPrefab": "ToastTips",
+    "PauseCoveredUI": false,
+    "UIGroupId": 3,
+    "EscapeClose": false
+  }
+]

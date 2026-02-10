@@ -1,0 +1,44 @@
+{
+    "name": "Unity.Startup",
+    "references": [
+        "GameFrameX.Runtime",
+        "GameFrameX.Entry.Runtime",
+        "GameFrameX.Web.Runtime",
+        "GameFrameX.Web.ProtoBuff.Runtime",
+        "GameFrameX.GlobalConfig.Runtime",
+        "YooAsset.Runtime",
+        "YooAsset",
+        "UniTask.Runtime",
+        "FairyGUI.Runtime",
+        "BlankGetChannel.Runtime",
+        "LuBan.Runtime",
+        "HybridCLR.Runtime",
+        "GameFrameX.Procedure.Runtime",
+        "GameFrameX.FSM.Runtime",
+        "GameFrameX.FairyGUI.Runtime",
+        "GameFrameX.Entity.Runtime",
+        "GameFrameX.Event.Runtime",
+        "GameFrameX.Download.Runtime",
+        "GameFrameX.Asset.Runtime",
+        "GameFrameX.Localization.Runtime",
+        "HybridCLRData",
+        "GameFrameX.UI.Runtime",
+        "GameFrameX.UI.FairyGUI.Runtime",
+        "GameFrameX.UI.UGUI.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.code-philosophy.hybridclr",
+            "expression": "",
+            "define": "ENABLE_GAME_FRAME_X_HYBRID_CLR"
+        }
+    ],
+    "noEngineReferences": false
+}

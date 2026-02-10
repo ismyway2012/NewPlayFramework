@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.entry",
+  "displayName": "Game Frame X Entry",
+  "category": "Game Framework X",
+  "description": "Game Frame X Entry",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.entry",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.entry.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "d49d9ff8d14e4559e801549ae2e69bf63a97b397"
+}

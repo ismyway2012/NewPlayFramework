@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.coroutine",
+  "displayName": "Game Frame X Coroutine",
+  "category": "Game Framework X",
+  "description": "Game Frame X Coroutine Component",
+  "version": "1.0.1",
+  "unity": "2017.1",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.coroutine",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.coroutine.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "417700997e7f94eddc2b1c2e2f80c320a8e6395b"
+}

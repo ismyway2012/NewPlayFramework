@@ -1,0 +1,27 @@
+{
+  "name": "com.gameframex.unity.readassets",
+  "displayName": "Game Frame X Read Assets",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "description": "通过同步接口的方式读取StreamingAssets 下的文件",
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.readassets.git",
+    "name": "com.gameframex.unity.readassets"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "2e843060daf77e09a896b8ba33629b10abaeb5ce"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "com.gameframex.unity.xincger.litjson",
+  "displayName": "LitJSON",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "description": "适用于Unity的改进型LitJson库",
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.xincger.litjson.git",
+    "name": "com.gameframex.unity.xincger.litjson"
+  },
+  "relatedPackages": {},
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "0cddc884780bbe876d48fe66a97dface8b3a5dae"
+}

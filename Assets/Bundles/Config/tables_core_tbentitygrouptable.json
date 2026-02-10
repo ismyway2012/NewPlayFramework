@@ -1,0 +1,58 @@
+[
+  {
+    "ID": 1,
+    "Name": "Default",
+    "ReleaseInterval": 60,
+    "Capacity": 60,
+    "ExpireTime": 60,
+    "Priority": 0
+  },
+  {
+    "ID": 2,
+    "Name": "Player",
+    "ReleaseInterval": 60,
+    "Capacity": 60,
+    "ExpireTime": 60,
+    "Priority": 0
+  },
+  {
+    "ID": 3,
+    "Name": "Effect",
+    "ReleaseInterval": 10,
+    "Capacity": 200,
+    "ExpireTime": 30,
+    "Priority": 0
+  },
+  {
+    "ID": 4,
+    "Name": "Item",
+    "ReleaseInterval": 60,
+    "Capacity": 60,
+    "ExpireTime": 60,
+    "Priority": 0
+  },
+  {
+    "ID": 5,
+    "Name": "Level",
+    "ReleaseInterval": 60,
+    "Capacity": 1,
+    "ExpireTime": 60,
+    "Priority": 0
+  },
+  {
+    "ID": 6,
+    "Name": "Bullet",
+    "ReleaseInterval": 60,
+    "Capacity": 60,
+    "ExpireTime": 60,
+    "Priority": 0
+  },
+  {
+    "ID": 7,
+    "Name": "Unrecycle",
+    "ReleaseInterval": 60,
+    "Capacity": 0,
+    "ExpireTime": 60,
+    "Priority": 0
+  }
+]

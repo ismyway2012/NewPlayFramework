@@ -1,0 +1,40 @@
+{
+  "name": "com.gameframex.unity",
+  "displayName": "Game Frame X",
+  "category": "Game Framework",
+  "description": "独立游戏前后端一体化解决方案,独立游戏开发者的圆梦大使。文档地址: https://gameframex.doc.alianblank.com",
+  "version": "1.6.1",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework"
+  ],
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "repository": {
+    "name": "com.gameframex.unity",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.git",
+    "type": "git"
+  },
+  "dependencies": {
+    "com.unity.modules.androidjni": "1.0.0",
+    "com.unity.modules.animation": "1.0.0",
+    "com.unity.modules.assetbundle": "1.0.0",
+    "com.unity.modules.audio": "1.0.0",
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.jsonserialize": "1.0.0",
+    "com.unity.modules.unitywebrequest": "1.0.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "d91e788909f3f9fb921960235ebcaac425120f9f"
+}

@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.procedure",
+  "displayName": "Game Frame X Procedure",
+  "category": "Game Framework X",
+  "description": "Game Frame X Procedure Component",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.procedure",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.procedure.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "ca8bbc88b8624240985e94a3bc1c17fe83123ec6"
+}

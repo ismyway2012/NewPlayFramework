@@ -1,0 +1,32 @@
+{
+  "name": "com.gameframex.unity.download",
+  "displayName": "Game Frame X Download",
+  "category": "Game Framework X",
+  "description": "Game Frame X Download Component",
+  "version": "1.1.0",
+  "unity": "2017.1",
+  "keywords": [
+    "Game Framework X"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.download",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.download.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "ec83fc6bc603beab70ad0ba7efd800a7a8b491a3"
+}

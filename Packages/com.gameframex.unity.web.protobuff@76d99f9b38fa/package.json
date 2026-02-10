@@ -1,0 +1,39 @@
+{
+  "name": "com.gameframex.unity.web.protobuff",
+  "displayName": "Game Frame X Web ProtoBuff",
+  "category": "Game Framework X",
+  "description": "独立游戏前后端一体化解决方案,独立游戏开发者的圆梦大使。\n文档地址: https://gameframex.doc.alianblank.com \n Game Frame X Web组件 - Unity网络功能包，提供HTTP请求。支持GET、POST常用网络操作，可自定义请求头和参数。采用现代C#开发中的异步/等待模式，使网络操作更加简单高效。",
+  "version": "1.0.0",
+  "unity": "2019.4",
+  "keywords": [
+    "Game Framework X",
+    "Web",
+    "ProtoBuff"
+  ],
+  "repository": {
+    "name": "com.gameframex.unity.web.protobuff",
+    "url": "git+https://github.com/gameframex/com.gameframex.unity.web.protobuff.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Blank",
+    "email": "alianblank@outlook.com",
+    "url": "https://gameframex.doc.alianblank.com"
+  },
+  "dependencies": {
+    "com.gameframex.unity": "1.1.1",
+    "com.gameframex.unity.web": "1.0.0",
+    "com.gameframex.unity.network": "1.0.0",
+    "com.gameframex.unity.google.protobuf": "1.0.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^24.2.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.cnb.cool/GameFrameX/npm/-/packages/"
+  },
+  "_fingerprint": "76d99f9b38fa1481f8fca92bd426722b257a5a19"
+}
