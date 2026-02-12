@@ -29,7 +29,7 @@ public abstract class DataModelStorageBase : DataModelBase
             OnInitialDataModel();
             return;
         }
-        string dataJson = GF.Setting.GetString(StorageKey, null);
+        string dataJson = GameApp.Setting.GetString(StorageKey, null);
         if (!string.IsNullOrEmpty(dataJson))
         {
             Newtonsoft.Json.JsonConvert.PopulateObject(dataJson, this);
@@ -50,7 +50,7 @@ public abstract class DataModelStorageBase : DataModelBase
         string dataJson = Utility.Json.ToJson(this);
         if (!string.IsNullOrEmpty(dataJson))
         {
-            GF.Setting.SetString(StorageKey, dataJson);
+            GameApp.Setting.SetString(StorageKey, dataJson);
         }
     }
 }

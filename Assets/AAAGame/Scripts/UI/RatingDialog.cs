@@ -34,19 +34,19 @@ public partial class RatingDialog : UIFormBase
             if (m_Star >= MIN_STAR)
             {
 #if UNTIY_ANDROID
-                Application.OpenURL(GF.Setting.GetString("AppStoreAndroid"));
+                Application.OpenURL(GameApp.Setting.GetString("AppStoreAndroid"));
 #elif UNITY_IOS
-                Application.OpenURL(GF.Setting.GetString("AppStoreIos"));
+                Application.OpenURL(GameApp.Setting.GetString("AppStoreIos"));
 #else
-                Application.OpenURL(GF.Setting.GetString("AppStoreSteam"));
+                Application.OpenURL(GameApp.Setting.GetString("AppStoreSteam"));
 #endif
-                GF.UI.ShowToast(GF.Localization.GetString("RatingDialog.HighRatingTips"));
+                GameApp.UI.ShowToast(GameApp.Localization.GetString("RatingDialog.HighRatingTips"));
             }
             else
             {
-                GF.UI.ShowToast(GF.Localization.GetString("RatingDialog.LowRatingTips"));
+                GameApp.UI.ShowToast(GameApp.Localization.GetString("RatingDialog.LowRatingTips"));
             }
-            GF.UI.Close(this);
+            GameApp.UI.Close(this);
         }
     }
 

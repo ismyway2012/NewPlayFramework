@@ -32,27 +32,27 @@ public partial class SettingDialog : UIFormBase
     public override void InitLocalization()
     {
         base.InitLocalization();
-        //varVersionTxt.text = Utility.Text.Format("{0}v{1}", AppSettings.Instance.DebugMode ? "Debug " : string.Empty, GF.Base.EditorResourceMode ? Application.version : Utility.Text.Format("{0}({1})", Application.version, GF.Resource.InternalResourceVersion));
+        //varVersionTxt.text = Utility.Text.Format("{0}v{1}", AppSettings.Instance.DebugMode ? "Debug " : string.Empty, GameApp.Base.EditorResourceMode ? Application.version : Utility.Text.Format("{0}({1})", Application.version, GameApp.Asset.InternalResourceVersion));
         varVersionTxt.text = Utility.Text.Format("{0}v{1}", AppSettings.Instance.DebugMode ? "Debug " : string.Empty, Application.version);
         var handleText = varToggleVibrate.GetComponentInChildren<TextMeshProUGUI>();
-        handleText.text = varToggleVibrate.isOn ? GF.Localization.GetString("ON") : GF.Localization.GetString("OFF");
+        handleText.text = varToggleVibrate.isOn ? GameApp.Localization.GetString("ON") : GameApp.Localization.GetString("OFF");
     }
     private void OnSoundFxSliderChanged(float arg0)
     {
-        GF.Setting.SetMediaVolume(Const.SoundGroup.Sound, arg0);
-        GF.Setting.SetMediaMute(Const.SoundGroup.Sound, arg0 == 0);
+        GameApp.Setting.SetMediaVolume(Const.SoundGroup.Sound, arg0);
+        GameApp.Setting.SetMediaMute(Const.SoundGroup.Sound, arg0 == 0);
     }
 
     private void OnMusicSliderChanged(float arg0)
     {
-        GF.Setting.SetMediaVolume(Const.SoundGroup.Music, arg0);
-        GF.Setting.SetMediaMute(Const.SoundGroup.Music, arg0 == 0);
+        GameApp.Setting.SetMediaVolume(Const.SoundGroup.Music, arg0);
+        GameApp.Setting.SetMediaMute(Const.SoundGroup.Music, arg0 == 0);
     }
 
     public override void OnOpen(object userData)
     {
         base.OnOpen(userData);
-        GF.Event.Subscribe(LoadDictionarySuccessEventArgs.EventId, OnLanguageReloaded);
+        GameApp.Event.Subscribe(LoadDictionarySuccessEventArgs.EventId, OnLanguageReloaded);
         m_ClickCount = 0;
         m_LastClickTime = Time.time;
         InitSettings();
@@ -60,16 +60,16 @@ public partial class SettingDialog : UIFormBase
 
     public override void OnClose(bool isShutdown, object userData)
     {
-        GF.Event.Unsubscribe(LoadDictionarySuccessEventArgs.EventId, OnLanguageReloaded);
+        GameApp.Event.Unsubscribe(LoadDictionarySuccessEventArgs.EventId, OnLanguageReloaded);
 
         base.OnClose(isShutdown, userData);
     }
     private void InitSettings()
     {
-        varMusicSlider.value = GF.Setting.GetMediaMute(Const.SoundGroup.Music) ? 0 : GF.Setting.GetMediaVolume(Const.SoundGroup.Music);
-        varSoundFxSlider.value = GF.Setting.GetMediaMute(Const.SoundGroup.Sound) ? 0 : GF.Setting.GetMediaVolume(Const.SoundGroup.Sound);
+        varMusicSlider.value = GameApp.Setting.GetMediaMute(Const.SoundGroup.Music) ? 0 : GameApp.Setting.GetMediaVolume(Const.SoundGroup.Music);
+        varSoundFxSlider.value = GameApp.Setting.GetMediaMute(Const.SoundGroup.Sound) ? 0 : GameApp.Setting.GetMediaVolume(Const.SoundGroup.Sound);
 
-        varToggleVibrate.SetIsOnWithoutNotify(!GF.Setting.GetMediaMute(Const.SoundGroup.Vibrate));
+        varToggleVibrate.SetIsOnWithoutNotify(!GameApp.Setting.GetMediaMute(Const.SoundGroup.Vibrate));
         OnToggleChanged(varToggleVibrate);
         RefreshLanguage();
     }
@@ -81,16 +81,16 @@ public partial class SettingDialog : UIFormBase
         float duration = (Mathf.Abs(targetX - varVibrateHandle.anchoredPosition.x) / m_ToggleHandleX) * 0.2f;
         varVibrateHandle.DOAnchorPosX(targetX, duration).onComplete = () =>
         {
-            handleText.text = tg.isOn ? GF.Localization.GetString("ON") : GF.Localization.GetString("OFF");
+            handleText.text = tg.isOn ? GameApp.Localization.GetString("ON") : GameApp.Localization.GetString("OFF");
         };
 
-        GF.Setting.SetMediaMute(Const.SoundGroup.Vibrate, !varToggleVibrate.isOn);
+        GameApp.Setting.SetMediaMute(Const.SoundGroup.Vibrate, !varToggleVibrate.isOn);
     }
 
     private void RefreshLanguage()
     {
-        var curLang = GF.Setting.GetLanguage();
-        var langTb = GF.Config.GetConfig<TbLanguagesTable>();
+        var curLang = GameApp.Setting.GetLanguage();
+        var langTb = GameApp.Config.GetConfig<TbLanguagesTable>();
         var langRow = langTb.Find(row => row.LanguageKey == curLang.ToString());
         varIconFlag.SetSprite(langRow.LanguageIcon);
         varLanguageName.text = langRow.LanguageDisplay;
@@ -104,40 +104,40 @@ public partial class SettingDialog : UIFormBase
             VarAction action = ReferencePool.Acquire<VarAction>();
             action.Value = OnLanguageChanged;
             uiParms.Set<VarAction>(LanguagesDialog.P_LangChangedCb, action);
-            GF.UI.OpenUIForm(UIViews.LanguagesDialog, uiParms);
+            GameApp.UI.OpenUIForm(UIViews.LanguagesDialog, uiParms);
         }
         else if (btSelf == varBtnHelp)
         {
-            GF.UI.ShowToast(GF.Localization.GetString("Nothing"));
+            GameApp.UI.ShowToast(GameApp.Localization.GetString("Nothing"));
         }
         else if (btSelf == varBtnPrivacy)
         {
-            GF.UI.ShowToast(GF.Localization.GetString("Nothing"));
+            GameApp.UI.ShowToast(GameApp.Localization.GetString("Nothing"));
         }
         else if (btSelf == varBtnTermsOfService)
         {
-            GF.UI.ShowToast(GF.Localization.GetString("Nothing"));
+            GameApp.UI.ShowToast(GameApp.Localization.GetString("Nothing"));
         }
         else if (btSelf == varBtnRating)
         {
-            GF.UI.OpenUIForm(UIViews.RatingDialog);
+            GameApp.UI.OpenUIForm(UIViews.RatingDialog);
         }
     }
     void OnLanguageChanged()
     {
         RefreshLanguage();
-        GF.UI.CloseUIForms(UIViews.LanguagesDialog);
+        GameApp.UI.CloseUIForms(UIViews.LanguagesDialog);
         ReloadLanguage();
     }
     private void ReloadLanguage()
     {
-        //GF.Localization.RemoveAllRawStrings();
-        //GF.Localization.LoadLanguage(GF.Localization.Language.ToString(), this);
+        //GameApp.Localization.RemoveAllRawStrings();
+        //GameApp.Localization.LoadLanguage(GameApp.Localization.Language.ToString(), this);
     }
 
     private void OnLanguageReloaded(object sender, GameEventArgs e)
     {
-        GF.UI.UpdateLocalizationTexts();
+        GameApp.UI.UpdateLocalizationTexts();
     }
     public void OnClickVersionText()
     {
@@ -146,7 +146,7 @@ public partial class SettingDialog : UIFormBase
             m_ClickCount++;
             if (m_ClickCount > 5)
             {
-                //GF.Debugger.ActiveWindow = !GF.Debugger.ActiveWindow;
+                //GameApp.Debugger.ActiveWindow = !GameApp.Debugger.ActiveWindow;
                 m_ClickCount = 0;
             }
         }
@@ -159,7 +159,7 @@ public partial class SettingDialog : UIFormBase
 
     private void Back2Home()
     {
-        var curProcedure = GF.Procedure.CurrentProcedure;
+        var curProcedure = GameApp.Procedure.CurrentProcedure;
         if (curProcedure is GameProcedure)
         {
             var gameProcedure = curProcedure as GameProcedure;

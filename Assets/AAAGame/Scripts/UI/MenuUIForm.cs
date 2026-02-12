@@ -10,7 +10,7 @@ public partial class MenuUIForm : UIFormBase
     public override void OnOpen(object userData)
     {
         base.OnOpen(userData);
-        GF.Event.Subscribe(PlayerDataChangedEventArgs.EventId, OnUserDataChanged);
+        GameApp.Event.Subscribe(PlayerDataChangedEventArgs.EventId, OnUserDataChanged);
         RefreshMoneyText();
         var uiparms = UIParams.Create();
         uiparms.Set<VarBoolean>(UITopbar.P_EnableBG, true);
@@ -25,7 +25,7 @@ public partial class MenuUIForm : UIFormBase
 
     public override void OnClose(bool isShutdown, object userData)
     {
-        GF.Event.Unsubscribe(PlayerDataChangedEventArgs.EventId, OnUserDataChanged);
+        GameApp.Event.Unsubscribe(PlayerDataChangedEventArgs.EventId, OnUserDataChanged);
         base.OnClose(isShutdown, userData);
     }
 
@@ -36,7 +36,7 @@ public partial class MenuUIForm : UIFormBase
         switch (btId)
         {
             case "SETTING":
-                GF.UI.OpenUIForm(UIViews.SettingDialog);
+                GameApp.UI.OpenUIForm(UIViews.SettingDialog);
                 break;
         }
     }

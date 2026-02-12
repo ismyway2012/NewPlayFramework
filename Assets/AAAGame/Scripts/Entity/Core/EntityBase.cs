@@ -41,9 +41,9 @@ public class EntityBase : EntityLogic
             return;
         }
         Params = userData as EntityParams;
-        if (GF.Entity.IsValidEntity(Params.AttchToEntity))
+        if (GameApp.Entity.IsValidEntity(Params.AttchToEntity))
         {
-            GF.Entity.AttachEntity(this.Entity, Params.AttchToEntity, Params.ParentTransform);
+            GameApp.Entity.AttachEntity(this.Entity, Params.AttchToEntity, Params.ParentTransform);
         }
         if (Params.position != null)
         {

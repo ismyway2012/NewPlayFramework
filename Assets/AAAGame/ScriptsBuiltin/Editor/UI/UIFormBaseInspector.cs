@@ -808,7 +808,7 @@ namespace UGF.EditorTools
                     var itemGo = item.Targets[0];
                     if (itemGo == null)
                     {
-                        GFBuiltin.LogWarning(Utility.Text.Format("######检测到变量:{0}, GameObject引用丢失!########", varName));
+                        Debug.LogWarning(Utility.Text.Format("######检测到变量:{0}, GameObject引用丢失!########", varName));
                         continue;
                     }
                     property.objectReferenceValue = isGameObject ? itemGo : itemGo.GetComponent(GetSampleType(varType));
@@ -825,7 +825,7 @@ namespace UGF.EditorTools
                         var itemGo = item.Targets[i];
                         if (itemGo == null)
                         {
-                            GFBuiltin.LogWarning(Utility.Text.Format("######检测到变量:{0},索引为{1}的GameObject引用丢失!########", varName, i));
+                            Debug.LogWarning(Utility.Text.Format("######检测到变量:{0},索引为{1}的GameObject引用丢失!########", varName, i));
                             continue;
                         }
                         property.GetArrayElementAtIndex(i).objectReferenceValue = isGameObject ? itemGo : itemGo.GetComponent(GetSampleType(varType));

@@ -37,7 +37,7 @@ public partial class ToastTips : UIFormBase
     {
         UniTask.Delay(TimeSpan.FromSeconds(m_Duration), true).ContinueWith(() =>
         {
-            GF.UI.Close(this);
+            GameApp.UI.Close(this);
         }).Forget();
     }
 }

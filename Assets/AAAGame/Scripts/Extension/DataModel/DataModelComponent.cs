@@ -28,11 +28,11 @@ namespace GameFrameX.Runtime
 
         private void Start()
         {
-            GF.Event.Subscribe(GFEventArgs.EventId, OnGFEventCallback);
+            GameApp.Event.Subscribe(GFEventArgs.EventId, OnGFEventCallback);
         }
         //private void OnDestroy()
         //{
-        //    GF.Event.Unsubscribe(GFEventArgs.EventId, OnGFEventCallback);
+        //    GameApp.Event.Unsubscribe(GFEventArgs.EventId, OnGFEventCallback);
         //}
         private void OnGFEventCallback(object sender, GameEventArgs e)
         {

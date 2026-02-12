@@ -27,7 +27,7 @@ public class ParticleEntity : EntityBase
         {
             UniTask.Delay(TimeSpan.FromSeconds(LifeTime)).ContinueWith(() =>
             {
-                GF.Entity.HideEntitySafe(this);
+                GameApp.Entity.HideEntitySafe(this);
             }).Forget();
         }
     }

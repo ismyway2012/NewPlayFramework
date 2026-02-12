@@ -42,7 +42,7 @@ public static class EntityExtension
             seqAct.SetUpdate(true);
             seqAct.onComplete = () =>
             {
-                GF.Entity.HideEntitySafe(entity);
+                GameApp.Entity.HideEntitySafe(entity);
             };
             seqAct.SetAutoKill();
         };
@@ -78,7 +78,7 @@ public static class EntityExtension
             seqAct.SetUpdate(true);
             seqAct.onComplete = () =>
             {
-                GF.Entity.HideEntitySafe(entity);
+                GameApp.Entity.HideEntitySafe(entity);
             };
             seqAct.SetAutoKill();
         };

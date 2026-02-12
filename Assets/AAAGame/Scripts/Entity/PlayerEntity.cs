@@ -189,9 +189,9 @@ public class PlayerEntity : CombatUnitEntity
         {
             for (int i = 0; i < m_AttackTargets.Length; i++)
             {
-                if (i < ids.Length && GF.Entity.HasEntity(ids[i]))
+                if (i < ids.Length && GameApp.Entity.HasEntity(ids[i]))
                 {
-                    m_AttackTargets[i] = GF.Entity.GetEntity<CombatUnitEntity>(ids[i]);
+                    m_AttackTargets[i] = GameApp.Entity.GetEntity<CombatUnitEntity>(ids[i]);
                 }
                 else
                 {
@@ -264,8 +264,8 @@ public class PlayerEntity : CombatUnitEntity
         for (int i = 0; i < entityIds.Count; i++)
         {
             entityId = entityIds[i];
-            if (!GF.Entity.HasEntity(entityId)) continue;
-            entity = GF.Entity.GetEntity<CombatUnitEntity>(entityId);
+            if (!GameApp.Entity.HasEntity(entityId)) continue;
+            entity = GameApp.Entity.GetEntity<CombatUnitEntity>(entityId);
 
             float distance = Vector3.Distance(CachedTransform.position, entity.CachedTransform.position);
             if (distance < lastDamageRadius)
@@ -298,7 +298,7 @@ public class PlayerEntity : CombatUnitEntity
         var fxParams = EntityParams.Create(position, Quaternion.LookRotation(Vector3.Normalize(hitPoint - position)).eulerAngles);
         float duration = Vector3.Distance(position, hitPoint) * 0.01f;
         fxParams.OnShowCallback = SetShootParticleDuration;
-        GF.Entity.ShowEffect("Effect/FireFx", fxParams, duration);
+        GameApp.Entity.ShowEffect("Effect/FireFx", fxParams, duration);
     }
 
     private void SetShootParticleDuration(EntityLogic obj)

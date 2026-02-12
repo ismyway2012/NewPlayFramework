@@ -23,7 +23,7 @@ public class Spawnner : MonoBehaviour
     private void Start()
     {
         InitValue();
-        var combatUnitTb = GF.Config.GetConfig<TbCombatUnitTable>();
+        var combatUnitTb = GameApp.Config.GetConfig<TbCombatUnitTable>();
         m_CombatUnitRow = combatUnitTb.Get(m_CombatUnitId);
     }
     private void InitValue()
@@ -86,7 +86,7 @@ public class Spawnner : MonoBehaviour
             {
                 eParams.Set<VarTransform>(AIEnemyEntity.P_Target, player.CachedTransform);
             }
-            int entityId = GF.Entity.ShowEntity<AIEnemyEntity>(m_CombatUnitRow.PrefabName, Const.EntityGroup.Player, eParams);
+            int entityId = GameApp.Entity.ShowEntity<AIEnemyEntity>(m_CombatUnitRow.PrefabName, Const.EntityGroup.Player, eParams);
             units[i] = entityId;
             //if (i % m_MaxSpawnCountPerFrame == 0) await UniTask.DelayFrame(1);
         }

@@ -16,18 +16,18 @@ public class GameProcedure : ProcedureBase
         base.OnEnter(procedureOwner);
         this.procedure = procedureOwner;
 
-        if (GF.Base.IsGamePaused)
+        if (GameApp.Base.IsGamePaused)
         {
-            GF.Base.ResumeGame();
+            GameApp.Base.ResumeGame();
         }
 
-        GF.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-        GF.Event.Subscribe(CloseUIFormCompleteEventArgs.EventId, OnCloseUIForm);
-        GF.Event.Subscribe(GameplayEventArgs.EventId, OnGameplayEvent);
+        GameApp.Event.Subscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+        GameApp.Event.Subscribe(CloseUIFormCompleteEventArgs.EventId, OnCloseUIForm);
+        GameApp.Event.Subscribe(GameplayEventArgs.EventId, OnGameplayEvent);
         m_Level = procedureOwner.GetData<VarUnityObject>("LevelEntity").Value as LevelEntity;
         procedureOwner.RemoveData("LevelEntity");
 
-        m_GameUI = await GF.UI.OpenUIFormAwait(UIViews.GameUIForm) as GameUIForm;
+        m_GameUI = await GameApp.UI.OpenUIFormAwait(UIViews.GameUIForm) as GameUIForm;
         m_Level.StartGame();
     }
 
@@ -39,13 +39,13 @@ public class GameProcedure : ProcedureBase
     }
     protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
     {
-        if (GF.Base.IsGamePaused)
+        if (GameApp.Base.IsGamePaused)
         {
-            GF.Base.ResumeGame();
+            GameApp.Base.ResumeGame();
         }
-        GF.Event.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
-        GF.Event.Unsubscribe(CloseUIFormCompleteEventArgs.EventId, OnCloseUIForm);
-        GF.Event.Unsubscribe(GameplayEventArgs.EventId, OnGameplayEvent);
+        GameApp.Event.Unsubscribe(OpenUIFormSuccessEventArgs.EventId, OnOpenUIFormSuccess);
+        GameApp.Event.Unsubscribe(CloseUIFormCompleteEventArgs.EventId, OnCloseUIForm);
+        GameApp.Event.Unsubscribe(GameplayEventArgs.EventId, OnGameplayEvent);
         base.OnLeave(procedureOwner, isShutdown);
     }
 
@@ -77,18 +77,18 @@ public class GameProcedure : ProcedureBase
     {
         if (m_GameUI == null) return;
 
-        if (GF.UI.GetTopUIFormId() != m_GameUI.SerialId)
+        if (GameApp.UI.GetTopUIFormId() != m_GameUI.SerialId)
         {
-            if (!GF.Base.IsGamePaused)
+            if (!GameApp.Base.IsGamePaused)
             {
-                GF.Base.PauseGame();
+                GameApp.Base.PauseGame();
             }
         }
         else
         {
-            if (GF.Base.IsGamePaused)
+            if (GameApp.Base.IsGamePaused)
             {
-                GF.Base.ResumeGame();
+                GameApp.Base.ResumeGame();
             }
         }
     }

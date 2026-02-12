@@ -46,7 +46,7 @@ public partial class ShopUIForm : UIFormBase
 
     //        mCurSelectId = value;
     //        PlayItmeAnim(CurSelectId, true);
-    //        RefreshCarInfo(GF.DataTable.GetDataTable<CarTable>().GetDataRow(CurSelectId));
+    //        RefreshCarInfo(GameApp.DataTable.GetDataTable<CarTable>().GetDataRow(CurSelectId));
     //    }
     //}
 
@@ -81,7 +81,7 @@ public partial class ShopUIForm : UIFormBase
     //{
     //    base.OnInit(userData);
     //    skinList = new List<CarTable>();
-    //    GF.DataTable.GetDataTable<CarTable>().GetAllDataRows(skinList);
+    //    GameApp.DataTable.GetDataTable<CarTable>().GetAllDataRows(skinList);
     //    skinList.Sort((rowA, rowB) => { return rowA.ShopOrder.CompareTo(rowB.ShopOrder); });
     //    maxPageIdx = Mathf.CeilToInt(skinList.Count / 9f) - 1;
     //    skinItems = new Dictionary<int, Button>();
@@ -106,11 +106,11 @@ public partial class ShopUIForm : UIFormBase
     //protected override void OnOpen(object userData)
     //{
     //    base.OnOpen(userData);
-    //    GF.Event.Subscribe(UserDataChangedEventArgs.EventId, OnUserDataChanged);
+    //    GameApp.Event.Subscribe(UserDataChangedEventArgs.EventId, OnUserDataChanged);
     //    InitPreview();
 
     //    RefreshButtonText();
-    //    SetMoneyText(GF.UserData.MONEY);
+    //    SetMoneyText(GameApp.UserData.MONEY);
     //    claimFreeSkin = UIParms.ContainsKey("FREE_SKIN") && (bool)UIParms["FREE_SKIN"];
     //    RefreshPage(0, ()=> {
     //        StartCoroutine(WaitAndAutoBuySkin());
@@ -125,7 +125,7 @@ public partial class ShopUIForm : UIFormBase
     //    var waitFrame = new WaitForEndOfFrame();
     //    while (claimFreeSkin)
     //    {
-    //        if (isLoading == false && GF.Entity.IsValidEntity(carEntity))
+    //        if (isLoading == false && GameApp.Entity.IsValidEntity(carEntity))
     //        {
     //            BuySkin(claimFreeSkin);
     //            claimFreeSkin = false;
@@ -143,14 +143,14 @@ public partial class ShopUIForm : UIFormBase
     //}
     //protected override void OnClose(bool isShutdown, object userData)
     //{
-    //    GF.Event.Unsubscribe(UserDataChangedEventArgs.EventId, OnUserDataChanged);
+    //    GameApp.Event.Unsubscribe(UserDataChangedEventArgs.EventId, OnUserDataChanged);
     //    if (!isShutdown)
     //    {
     //        if (renderCam != null)
     //        {
     //            Destroy(renderCam.gameObject);
     //        }
-    //        GF.Entity.HideEntitySafe(carEntityId);
+    //        GameApp.Entity.HideEntitySafe(carEntityId);
     //    }
     //    base.OnClose(isShutdown, userData);
     //}
@@ -176,10 +176,10 @@ public partial class ShopUIForm : UIFormBase
     //private void SetPreviewCar(int carId)
     //{
     //    //Vector3 rot = carEntity != null ? carEntity.transform.rotation.eulerAngles : Vector3.up * 45f;
-    //    GF.Entity.HideEntitySafe(carEntityId);
+    //    GameApp.Entity.HideEntitySafe(carEntityId);
     //    carEntity = null;
     //    isLoading = true;
-    //    var carTb = GF.DataTable.GetDataTable<CarTable>();
+    //    var carTb = GameApp.DataTable.GetDataTable<CarTable>();
     //    var carRow = carTb.GetDataRow(carId);
     //    var carParms = new Dictionary<string, object>
     //    {
@@ -192,7 +192,7 @@ public partial class ShopUIForm : UIFormBase
     //            isLoading = false;
     //        })
     //    };
-    //    carEntityId = GF.Entity.ShowEntity<SampleEntity>(UtilityBuiltin.ResPath.GetEntityPath(carRow.PfbName), Const.EntityGroup.UnRecycle, carParms);
+    //    carEntityId = GameApp.Entity.ShowEntity<SampleEntity>(UtilityBuiltin.ResPath.GetEntityPath(carRow.PfbName), Const.EntityGroup.UnRecycle, carParms);
     //}
     //private void OnUserDataChanged(object sender, GameEventArgs e)
     //{
@@ -263,7 +263,7 @@ public partial class ShopUIForm : UIFormBase
     //        return;
     //    }
     //    isLoading = true;
-    //    GF.UI.LoadSpriteAtlas(UtilityBuiltin.ResPath.GetTexturePath("carpreview.spriteatlas"), carIconAtlas =>
+    //    GameApp.UI.LoadSpriteAtlas(UtilityBuiltin.ResPath.GetTexturePath("carpreview.spriteatlas"), carIconAtlas =>
     //    {
     //        curPageIdx = idx;
     //        pageUpDownBts[0].interactable = curPageIdx > 0;
@@ -272,7 +272,7 @@ public partial class ShopUIForm : UIFormBase
     //        skinItems.Clear();
     //        int startIdx = curPageIdx * 9;
     //        int endIdx = Mathf.Min(startIdx + 9, skinList.Count);
-    //        var ownCars = GF.UserData.GetOwnCars();
+    //        var ownCars = GameApp.UserData.GetOwnCars();
     //        for (int i = 0; i < listView.content.childCount; i++)
     //        {
     //            var item = listView.content.GetChild(i);
@@ -286,7 +286,7 @@ public partial class ShopUIForm : UIFormBase
     //            }
     //        }
     //        isLoading = false;
-    //        CurSelectId = GF.UserData.CAR_SKIN_ID;
+    //        CurSelectId = GameApp.UserData.CAR_SKIN_ID;
     //        onRefreshComplete?.Invoke();
     //    });
     //}
@@ -312,8 +312,8 @@ public partial class ShopUIForm : UIFormBase
     //    var glowCol = itemGlow.color;
     //    glowCol.a = 0;
     //    itemGlow.color = glowCol;
-    //    //itemGlow.gameObject.SetActive(!GF.UserData.GetOwnCars().Contains(id));
-    //    //bool isUnlocked = GF.UserData.GetOwnCars().Contains(id);
+    //    //itemGlow.gameObject.SetActive(!GameApp.UserData.GetOwnCars().Contains(id));
+    //    //bool isUnlocked = GameApp.UserData.GetOwnCars().Contains(id);
     //    itemBt.interactable = isUnlocked;
     //    var iconImg = item.Find("Icon").GetComponent<Image>();
     //    iconImg.transform.localScale = Vector3.one * (CurSelectId == id ? 1.25f : 1);
@@ -333,11 +333,11 @@ public partial class ShopUIForm : UIFormBase
     //    {
     //        return;
     //    }
-    //    if (CurSelectId == carId || !GF.UserData.GetOwnCars().Contains(carId))
+    //    if (CurSelectId == carId || !GameApp.UserData.GetOwnCars().Contains(carId))
     //    {
     //        return;
     //    }
-    //    GF.UserData.CAR_SKIN_ID = carId;
+    //    GameApp.UserData.CAR_SKIN_ID = carId;
     //    CurSelectId = carId;
     //}
     //public override void OnButtonClick(object sender, string bt_tag)
@@ -356,7 +356,7 @@ public partial class ShopUIForm : UIFormBase
     //            ClaimAd2Money();
     //            break;
     //        case "BACK":
-    //            GF.UI.HideUIForm(this.UIForm);
+    //            GameApp.UI.HideUIForm(this.UIForm);
     //            break;
     //    }
     //}
@@ -374,14 +374,14 @@ public partial class ShopUIForm : UIFormBase
     //}
     //private void BuySkin(bool isFree = false)
     //{
-    //    var nextUnlockCar = GF.UserData.GetNextUnlockCarId();
+    //    var nextUnlockCar = GameApp.UserData.GetNextUnlockCarId();
 
-    //    var skinTb = GF.DataTable.GetDataTable<CarTable>();
+    //    var skinTb = GameApp.DataTable.GetDataTable<CarTable>();
     //    int skinPrice = skinTb.GetDataRow(nextUnlockCar).PriceNum;
-    //    if (!isFree && GF.UserData.MONEY < skinPrice)
+    //    if (!isFree && GameApp.UserData.MONEY < skinPrice)
     //    {
-    //        var tips = Utility.Text.Format(GF.Localization.GetLocalString("You need {0} coins more to unlock the next one."), skinPrice - GF.UserData.MONEY);
-    //        GF.AD.ShowToast(tips);
+    //        var tips = Utility.Text.Format(GameApp.Localization.GetLocalString("You need {0} coins more to unlock the next one."), skinPrice - GameApp.UserData.MONEY);
+    //        GameApp.AD.ShowToast(tips);
     //        return;
     //    }
     //    var pageIdx = GetCarInPage(nextUnlockCar);
@@ -392,7 +392,7 @@ public partial class ShopUIForm : UIFormBase
     //        int startIdx = curPageIdx * 9;
     //        int endIdx = Mathf.Min(startIdx + 9, skinList.Count);
     //        var remainSkins = new List<CarTable>();
-    //        var ownSkins = GF.UserData.GetOwnCars();
+    //        var ownSkins = GameApp.UserData.GetOwnCars();
 
     //        int targetIdx = -1;
     //        for (int i = startIdx; i < endIdx; i++)
@@ -407,8 +407,8 @@ public partial class ShopUIForm : UIFormBase
     //                }
     //            }
     //        }
-    //        GF.UserData.MONEY -= skinPrice;
-    //        GF.UserData.AddOwnCar(nextUnlockCar);
+    //        GameApp.UserData.MONEY -= skinPrice;
+    //        GameApp.UserData.AddOwnCar(nextUnlockCar);
     //        int toValue = 0;
     //        int endValue = (remainSkins.Count) * 2 + targetIdx;
     //        var animSeq = DOTween.Sequence();
@@ -424,26 +424,26 @@ public partial class ShopUIForm : UIFormBase
     //        animSeq.onComplete = () =>
     //        {
     //            isLoading = false;
-    //            GF.UserData.CAR_SKIN_ID = nextUnlockCar;
+    //            GameApp.UserData.CAR_SKIN_ID = nextUnlockCar;
     //            RefreshPage(pageIdx);
-    //            GF.AD.SendEvent("Purchase_Skins", "How many skins player bought.");
+    //            GameApp.AD.SendEvent("Purchase_Skins", "How many skins player bought.");
     //        };
     //    });
     //}
     //private void ClaimAd2Money()
     //{
-    //    GF.AD.ShowVideoAd(() =>
+    //    GameApp.AD.ShowVideoAd(() =>
     //    {
-    //        GF.AD.SendEvent("Rewarded_click_ShopAdBt", "How many ShopAdBt player clicked");
+    //        GameApp.AD.SendEvent("Rewarded_click_ShopAdBt", "How many ShopAdBt player clicked");
     //        isLoading = true;
-    //        int rewardCoin = GF.UserData.AD2MONEY;
-    //        GF.UI.ShowRewardEffect(Vector3.zero, moneyNumText.transform.position - Vector3.right * 0.25f);
+    //        int rewardCoin = GameApp.UserData.AD2MONEY;
+    //        GameApp.UI.ShowRewardEffect(Vector3.zero, moneyNumText.transform.position - Vector3.right * 0.25f);
     //        var seqAct = DOTween.Sequence();
     //        seqAct.AppendInterval(0.5f);
     //        seqAct.onComplete = () =>
     //        {
-    //            GF.UserData.MONEY += rewardCoin;
-    //            GF.UserData.AD2MONEY_LV++;
+    //            GameApp.UserData.MONEY += rewardCoin;
+    //            GameApp.UserData.AD2MONEY_LV++;
     //            isLoading = false;
     //        };
     //    });
@@ -452,15 +452,15 @@ public partial class ShopUIForm : UIFormBase
 
     //private void RefreshButtonText()
     //{
-    //    var skinTb = GF.DataTable.GetDataTable<CarTable>();
+    //    var skinTb = GameApp.DataTable.GetDataTable<CarTable>();
     //    var buyBtText = bottomBts[0].transform.Find("PriceText").GetComponent<Text>();
-    //    int nextCarId = GF.UserData.GetNextUnlockCarId();
-    //    bool lvMax = GF.UserData.GetOwnCars().Contains(nextCarId);
+    //    int nextCarId = GameApp.UserData.GetNextUnlockCarId();
+    //    bool lvMax = GameApp.UserData.GetOwnCars().Contains(nextCarId);
     //    bottomBts[0].interactable = !lvMax;
     //    buyBtText.text = skinTb.GetDataRow(nextCarId).PriceNum.ToString();
 
     //    var adRewardText = bottomBts[1].GetComponentInChildren<Text>();
-    //    adRewardText.text = Utility.Text.Format("+{0}", GF.UserData.AD2MONEY);
+    //    adRewardText.text = Utility.Text.Format("+{0}", GameApp.UserData.AD2MONEY);
     //}
     //private void SetMoneyText(int coins)
     //{

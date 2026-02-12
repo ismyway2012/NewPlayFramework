@@ -20,7 +20,7 @@ public static class UIExtension
     public static void SetSprite(this Image image, string spriteName, bool resize = false)
     {
         spriteName = UtilityBuiltin.AssetsPath.GetSpritesPath(spriteName);
-        GF.UI.LoadSprite(spriteName, sp =>
+        GameApp.UI.LoadSprite(spriteName, sp =>
         {
             if (sp != null)
             {
@@ -37,7 +37,7 @@ public static class UIExtension
     public static void SetTexture(this RawImage rawImage, string spriteName, bool resize = false)
     {
         spriteName = UtilityBuiltin.AssetsPath.GetTexturePath(spriteName);
-        GF.UI.LoadTexture(spriteName, tex =>
+        GameApp.UI.LoadTexture(spriteName, tex =>
         {
             if (tex != null)
             {
@@ -65,7 +65,7 @@ public static class UIExtension
     /// <returns></returns>
     public static Vector3 PositionWorldToUI(this UIComponent uiCom, Vector3 worldPos, RectTransform targetRect)
     {
-        var viewPos = GF.Scene.MainCamera.WorldToViewportPoint(worldPos);
+        var viewPos = GameApp.Scene.MainCamera.WorldToViewportPoint(worldPos);
         var uiPos = GF.UICamera.ViewportToScreenPoint(viewPos);
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(targetRect, uiPos, GF.UICamera, out var localPoint);
@@ -80,12 +80,12 @@ public static class UIExtension
     /// <param name="onSpriteLoaded"></param>
     public static async void LoadSprite(this UIComponent uiCom, string spriteName, System.Action<Sprite> onSpriteLoaded)
     {
-        if (GF.Resource.HasAssetPath(spriteName) == false)
+        if (GameApp.Asset.HasAssetPath(spriteName) == false)
         {
             Log.Warning("UIExtension.SetSprite()失败, 资源不存在:{0}", spriteName);
             return;
         }
-        var asset = await GF.Resource.LoadAssetAsync<Sprite>(spriteName);
+        var asset = await GameApp.Asset.LoadAssetAsync<Sprite>(spriteName);
         Sprite resultSp = asset.GetAssetObject<Sprite>();
         onSpriteLoaded.Invoke(resultSp);
     }
@@ -97,12 +97,12 @@ public static class UIExtension
     /// <param name="onSpriteLoaded"></param>
     public static async void LoadTexture(this UIComponent uiCom, string spriteName, System.Action<Texture2D> onSpriteLoaded)
     {
-        if (GF.Resource.HasAssetPath(spriteName) == false)
+        if (GameApp.Asset.HasAssetPath(spriteName) == false)
         {
             Log.Warning("UIExtension.LoadTexture()失败, 资源不存在:{0}", spriteName);
             return;
         }
-        var asset = await GF.Resource.LoadAssetAsync<Texture2D>(spriteName);
+        var asset = await GameApp.Asset.LoadAssetAsync<Texture2D>(spriteName);
         Texture2D resultSp = asset.GetAssetObject<Texture2D>();
         onSpriteLoaded.Invoke(resultSp);
     }
@@ -152,8 +152,8 @@ public static class UIExtension
     /// <returns></returns>
     public static async UniTask<IUIForm> OpenUIForm(this UIComponent uiCom, UIViews viewId, UIParams parms = null)
     {
-        var uiTb = GF.Config.GetConfig<TbUITable>();
-        var uiGroupTb = GF.Config.GetConfig<TbUIGroupTable>();
+        var uiTb = GameApp.Config.GetConfig<TbUITable>();
+        var uiGroupTb = GameApp.Config.GetConfig<TbUIGroupTable>();
         int uiId = (int)viewId;
         if (!uiTb.TryGet(uiId, out var uiRow))
         {
@@ -199,7 +199,7 @@ public static class UIExtension
     {
         if (uiCom.IsLoadingUIForm(uiFormId))
         {
-            GF.UI.CloseUIForm(uiFormId);
+            GameApp.UI.CloseUIForm(uiFormId);
             return;
         }
         if (!uiCom.HasUIForm(uiFormId))
@@ -259,13 +259,13 @@ public static class UIExtension
     /// <returns></returns>
     public static string GetUIFormAssetName(this UIComponent uiCom, UIViews view)
     {
-        if (GF.Config == null || !GF.Config.HasConfig<TbUITable>())
+        if (GameApp.Config == null || !GameApp.Config.HasConfig<TbUITable>())
         {
             Log.Warning("GetUIFormAssetName is empty.");
             return string.Empty;
         }
 
-        var uiTb = GF.Config.GetConfig<TbUITable>();
+        var uiTb = GameApp.Config.GetConfig<TbUITable>();
         if (!uiTb.TryGet((int)view, out var table))
         {
             return string.Empty;
@@ -315,7 +315,7 @@ public static class UIExtension
         {
             (uiForm as UIFormBase).InitLocalization();
         }
-        var uiObjectPool = GF.ObjectPool.GetObjectPool(pool => pool.FullName == "GameFramework.UI.UIManager+UIFormInstanceObject.UI Instance Pool");
+        var uiObjectPool = GameApp.ObjectPool.GetObjectPool(pool => pool.FullName == "GameFramework.UI.UIManager+UIFormInstanceObject.UI Instance Pool");
         if (uiObjectPool != null)
         {
             uiObjectPool.ReleaseAllUnused();
@@ -360,7 +360,7 @@ public static class UIExtension
         int coinNum = num;
         DOVirtual.DelayedCall(flyDelay, () =>
         {
-            GF.Sound.PlayEffect("add_money.wav");
+            GameApp.Sound.PlayEffect("add_money.wav");
         });
         var richText = "<sprite name=USD_0>";
         for (int i = 0; i < num; i++)
@@ -383,17 +383,17 @@ public static class UIExtension
                 animSeq.Append(moneyEntity.transform.DOMove(targetPos, moveDuration).SetEase(Ease.Linear));
                 animSeq.onComplete = () =>
                 {
-                    GF.Entity.HideEntitySafe(moneyEntityId);
+                    GameApp.Entity.HideEntitySafe(moneyEntityId);
                     coinNum--;
                     if (coinNum <= 0)
                     {
                         onAnimComplete?.Invoke();
                     }
-                    GF.Sound.PlayEffect("Collect_Gem_2.wav");
-                    GF.Sound.PlayVibrate();
+                    GameApp.Sound.PlayEffect("Collect_Gem_2.wav");
+                    GameApp.Sound.PlayVibrate();
                 };
             };
-            GF.Entity.ShowEntity<SampleEntity>("Effect/EffectMoney", Const.EntityGroup.Effect, animPrams);
+            GameApp.Entity.ShowEntity<SampleEntity>("Effect/EffectMoney", Const.EntityGroup.Effect, animPrams);
         }
     }
 

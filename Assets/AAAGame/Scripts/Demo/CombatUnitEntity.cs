@@ -63,9 +63,9 @@ public class CombatUnitEntity : EntityBase
         Hp -= damgeValue;
         var hitPoint = HitPoint;
         var bloodFxParms = EntityParams.Create(hitPoint);
-        GF.Entity.ShowEffect("Effect/BloodExplosion", bloodFxParms, 1.5f);
+        GameApp.Entity.ShowEffect("Effect/BloodExplosion", bloodFxParms, 1.5f);
         var damageFxParms = EntityParams.Create(hitPoint);
-        GF.Entity.ShowPopText(damageFxParms, damgeValue.ToString(), hitPoint + Vector3.up, 0.5f, 7);
+        GameApp.Entity.ShowPopText(damageFxParms, damgeValue.ToString(), hitPoint + Vector3.up, 0.5f, 7);
         if (Hp <= 0)
         {
             OnBeKilled();
@@ -76,7 +76,7 @@ public class CombatUnitEntity : EntityBase
 
     protected virtual void OnBeKilled()
     {
-        GF.Entity.HideEntity(this.Entity);
+        GameApp.Entity.HideEntity(this.Entity);
 
         if(CampFlag == CombatFlag.Enemy)
         {

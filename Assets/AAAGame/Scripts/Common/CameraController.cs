@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
 
     internal void SetCameraView(int viewId, bool smooth = true)
     {
-        var camTb = GF.Config.GetConfig<TbCameraViewTable>();
+        var camTb = GameApp.Config.GetConfig<TbCameraViewTable>();
         if (!camTb.TryGet(viewId, out var camRow))
         {
             return;

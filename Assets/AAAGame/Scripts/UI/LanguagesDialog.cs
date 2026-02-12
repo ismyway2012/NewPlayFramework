@@ -21,7 +21,7 @@ public partial class LanguagesDialog : UIFormBase
     }
     void RefreshList()
     {
-        var langTb = GF.Config.GetConfig<TbLanguagesTable>();
+        var langTb = GameApp.Config.GetConfig<TbLanguagesTable>();
         langTb.ForEach(lang =>
         {
             var item = this.SpawnItem<UIItemObject>(varLanguageToggle, varToggleGroup.transform);

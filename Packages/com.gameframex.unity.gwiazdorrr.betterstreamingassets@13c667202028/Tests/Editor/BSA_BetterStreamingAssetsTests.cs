@@ -241,7 +241,7 @@ namespace Better.StreamingAssets
         public static void ConvertAABToAPKS()
         {
             // find bundle tool
-            var bundleTool = Directory.GetFiles(Path.Combine(AndroidExternalToolsSettings.gradlePath, ".."), "bundletool*.jar").Single();
+            var bundleTool = Directory.GetFiles(Path.Combine(AndroidExternalToolsSettings.Gradle.path, ".."), "bundletool*.jar").Single();
             var paths = Directory.GetFiles(".", "*.aab");
 
             try

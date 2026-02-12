@@ -19,26 +19,26 @@ public class ChangeSceneProcedure : ProcedureBase
         base.OnEnter(procedureOwner);
         loadSceneOver = false;
 
-        GF.Event.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSuccess);
-        GF.Event.Subscribe(LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
-        GF.Event.Subscribe(LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
+        GameApp.Event.Subscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSuccess);
+        GameApp.Event.Subscribe(LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
+        GameApp.Event.Subscribe(LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
         // 停止所有声音
-        GF.Sound.StopAllLoadingSounds();
-        GF.Sound.StopAllLoadedSounds();
+        GameApp.Sound.StopAllLoadingSounds();
+        GameApp.Sound.StopAllLoadedSounds();
 
         // 隐藏所有实体
-        GF.Entity.HideAllLoadingEntities();
-        GF.Entity.HideAllLoadedEntities();
+        GameApp.Entity.HideAllLoadingEntities();
+        GameApp.Entity.HideAllLoadedEntities();
 
         // 卸载所有场景
-        string[] loadedSceneAssetNames = GF.Scene.GetLoadedSceneAssetNames();
+        string[] loadedSceneAssetNames = GameApp.Scene.GetLoadedSceneAssetNames();
         for (int i = 0; i < loadedSceneAssetNames.Length; i++)
         {
-            GF.Scene.UnloadScene(loadedSceneAssetNames[i]);
+            GameApp.Scene.UnloadScene(loadedSceneAssetNames[i]);
         }
 
         // 还原游戏速度
-        GF.Base.ResetNormalGameSpeed();
+        GameApp.Base.ResetNormalGameSpeed();
 
         if (!procedureOwner.HasData(P_SceneName))
         {
@@ -46,7 +46,7 @@ public class ChangeSceneProcedure : ProcedureBase
         }
         nextScene = procedureOwner.GetData<VarString>(P_SceneName);
         procedureOwner.RemoveData(P_SceneName);
-        GF.Scene.LoadScene(UtilityBuiltin.AssetsPath.GetScenePath(nextScene), UnityEngine.SceneManagement.LoadSceneMode.Single, this).AsUniTask().Forget();
+        GameApp.Scene.LoadScene(UtilityBuiltin.AssetsPath.GetScenePath(nextScene), UnityEngine.SceneManagement.LoadSceneMode.Single, this).AsUniTask().Forget();
     }
 
     protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
@@ -62,16 +62,16 @@ public class ChangeSceneProcedure : ProcedureBase
         {
             case "Game":
                 ChangeState<MenuProcedure>(procedureOwner);
-                //GF.Sound.PlayBGM("BillieEilishMusic.wav");
+                //GameApp.Sound.PlayBGM("BillieEilishMusic.wav");
                 break;
         }
     }
 
     protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
     {
-        GF.Event.Unsubscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSuccess);
-        GF.Event.Unsubscribe(LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
-        GF.Event.Unsubscribe(LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
+        GameApp.Event.Unsubscribe(LoadSceneSuccessEventArgs.EventId, OnLoadSceneSuccess);
+        GameApp.Event.Unsubscribe(LoadSceneFailureEventArgs.EventId, OnLoadSceneFailure);
+        GameApp.Event.Unsubscribe(LoadSceneUpdateEventArgs.EventId, OnLoadSceneUpdate);
         base.OnLeave(procedureOwner, isShutdown);
     }
     private void OnLoadSceneUpdate(object sender, GameEventArgs e)

@@ -25,12 +25,12 @@ public class PreloadProcedure : ProcedureBase
     protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
     {
         base.OnEnter(procedureOwner);
-        GF.Event.Subscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
-        GF.Event.Subscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
-        GF.Event.Subscribe(LoadDictionarySuccessEventArgs.EventId, OnLoadDicSuccess);
-        GF.Event.Subscribe(LoadDictionaryFailureEventArgs.EventId, OnLoadDicFailure);
-        //GF.BuiltinView.ShowLoadingProgress();
-        GF.Log("进入HybridCLR热更流程! 预加载游戏数据...");
+        GameApp.Event.Subscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
+        GameApp.Event.Subscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
+        GameApp.Event.Subscribe(LoadDictionarySuccessEventArgs.EventId, OnLoadDicSuccess);
+        GameApp.Event.Subscribe(LoadDictionaryFailureEventArgs.EventId, OnLoadDicFailure);
+        //GameApp.BuiltinView.ShowLoadingProgress();
+        Log.Info("进入HybridCLR热更流程! 预加载游戏数据...");
 
         InitAppSettings();
         PreloadAndInitData();
@@ -39,10 +39,10 @@ public class PreloadProcedure : ProcedureBase
 
     protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
     {
-        GF.Event.Unsubscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
-        GF.Event.Unsubscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
-        GF.Event.Unsubscribe(LoadDictionarySuccessEventArgs.EventId, OnLoadDicSuccess);
-        GF.Event.Unsubscribe(LoadDictionaryFailureEventArgs.EventId, OnLoadDicFailure);
+        GameApp.Event.Unsubscribe(LoadConfigSuccessEventArgs.EventId, OnLoadConfigSuccess);
+        GameApp.Event.Unsubscribe(LoadConfigFailureEventArgs.EventId, OnLoadConfigFailure);
+        GameApp.Event.Unsubscribe(LoadDictionarySuccessEventArgs.EventId, OnLoadDicSuccess);
+        GameApp.Event.Unsubscribe(LoadDictionaryFailureEventArgs.EventId, OnLoadDicFailure);
         base.OnLeave(procedureOwner, isShutdown);
     }
 
@@ -54,22 +54,22 @@ public class PreloadProcedure : ProcedureBase
 
         smoothProgress = Mathf.Lerp(smoothProgress, loadedProgress / (float)totalProgress, elapseSeconds * progressSmoothSpeed);
 
-        //GF.BuiltinView.SetLoadingProgress(smoothProgress);
+        //GameApp.BuiltinView.SetLoadingProgress(smoothProgress);
         //预加载完成 切换场景
         if (loadedProgress >= totalProgress && smoothProgress >= 0.99f)
         {
             preloadAllCompleted = true;
             InitGameFrameworkSettings();
-            GF.Log("预加载完成, 进入游戏场景.");
+            Log.Info("预加载完成, 进入游戏场景.");
             procedureOwner.SetData<VarString>(ChangeSceneProcedure.P_SceneName, "Game");
             ChangeState<ChangeSceneProcedure>(procedureOwner);
         }
     }
     private void InitAppSettings()
     {
-        //if (string.IsNullOrWhiteSpace(GF.Setting.GetABTestGroup()))
+        //if (string.IsNullOrWhiteSpace(GameApp.Setting.GetABTestGroup()))
         //{
-        //    GF.Setting.SetABTestGroup("B");//设置A/B测试组; 应由服务器分配该新用户所属测试组
+        //    GameApp.Setting.SetABTestGroup("B");//设置A/B测试组; 应由服务器分配该新用户所属测试组
         //}
     }
     /// <summary>
@@ -78,12 +78,12 @@ public class PreloadProcedure : ProcedureBase
     private void InitGameFrameworkSettings()
     {
         //初始化EntityGroup
-        var entityGroupTb = GF.Config.GetConfig<TbEntityGroupTable>();
+        var entityGroupTb = GameApp.Config.GetConfig<TbEntityGroupTable>();
         entityGroupTb.ForEach(tb =>
         {
-            if (GF.Entity.HasEntityGroup(tb.Name))
+            if (GameApp.Entity.HasEntityGroup(tb.Name))
             {
-                var group = GF.Entity.GetEntityGroup(tb.Name);
+                var group = GameApp.Entity.GetEntityGroup(tb.Name);
                 group.InstanceAutoReleaseInterval = tb.ReleaseInterval;
                 group.InstanceCapacity = tb.Capacity;
                 group.InstanceExpireTime = tb.ExpireTime;
@@ -91,52 +91,52 @@ public class PreloadProcedure : ProcedureBase
             }
             else
             {
-                GF.Entity.AddEntityGroup(tb.Name, tb.ReleaseInterval, tb.Capacity, tb.ExpireTime, tb.Priority);
+                GameApp.Entity.AddEntityGroup(tb.Name, tb.ReleaseInterval, tb.Capacity, tb.ExpireTime, tb.Priority);
             }
         });
 
         Dictionary<string, SoundGroupTable> defaultSoundGroupData = new Dictionary<string, SoundGroupTable>();
         //初始化SoundGroup
-        var soundGroupTb = GF.Config.GetConfig<TbSoundGroupTable>();
+        var soundGroupTb = GameApp.Config.GetConfig<TbSoundGroupTable>();
         soundGroupTb.ForEach(tb =>
         {
             if (!defaultSoundGroupData.ContainsKey(tb.Name))
             {
                 defaultSoundGroupData.Add(tb.Name, tb);
             }
-            if (GF.Sound.HasSoundGroup(tb.Name))
+            if (GameApp.Sound.HasSoundGroup(tb.Name))
             {
-                var group = GF.Sound.GetSoundGroup(tb.Name);
+                var group = GameApp.Sound.GetSoundGroup(tb.Name);
                 group.AvoidBeingReplacedBySamePriority = tb.AvoidBeingReplacedBySamePriority;
                 group.Mute = tb.Mute;
                 group.Volume = tb.Volume;
                 return;
             }
-            GF.Sound.AddSoundGroup(tb.Name, tb.AvoidBeingReplacedBySamePriority, tb.Mute, tb.Volume, tb.SoundAgentCount);
+            GameApp.Sound.AddSoundGroup(tb.Name, tb.AvoidBeingReplacedBySamePriority, tb.Mute, tb.Volume, tb.SoundAgentCount);
         });
 
         //初始化UIGroup
-        var uiGroupTb = GF.Config.GetConfig<TbUIGroupTable>();
+        var uiGroupTb = GameApp.Config.GetConfig<TbUIGroupTable>();
         uiGroupTb.ForEach(tb =>
         {
-            if (GF.UI.HasUIGroup(tb.Name))
+            if (GameApp.UI.HasUIGroup(tb.Name))
             {
-                var group = GF.UI.GetUIGroup(tb.Name);
+                var group = GameApp.UI.GetUIGroup(tb.Name);
                 group.Depth = tb.Depth;
                 return;
             }
-            GF.UI.AddUIGroup(tb.Name, tb.Depth);
+            GameApp.UI.AddUIGroup(tb.Name, tb.Depth);
         });
 
 
         ////初始化音效
-        //GF.Setting.SetMediaMute(Const.SoundGroup.Music, GF.Setting.GetMediaMute(Const.SoundGroup.Music, defaultSoundGroupData[Const.SoundGroup.Music.ToString()].Mute));
-        //GF.Setting.SetMediaMute(Const.SoundGroup.Sound, GF.Setting.GetMediaMute(Const.SoundGroup.Sound, defaultSoundGroupData[Const.SoundGroup.Sound.ToString()].Mute));
-        //GF.Setting.SetMediaMute(Const.SoundGroup.Vibrate, GF.Setting.GetMediaMute(Const.SoundGroup.Vibrate, defaultSoundGroupData[Const.SoundGroup.Vibrate.ToString()].Mute));
-        //GF.Setting.SetMediaMute(Const.SoundGroup.Joystick, GF.Setting.GetMediaMute(Const.SoundGroup.Joystick, defaultSoundGroupData[Const.SoundGroup.Joystick.ToString()].Mute));
+        //GameApp.Setting.SetMediaMute(Const.SoundGroup.Music, GameApp.Setting.GetMediaMute(Const.SoundGroup.Music, defaultSoundGroupData[Const.SoundGroup.Music.ToString()].Mute));
+        //GameApp.Setting.SetMediaMute(Const.SoundGroup.Sound, GameApp.Setting.GetMediaMute(Const.SoundGroup.Sound, defaultSoundGroupData[Const.SoundGroup.Sound.ToString()].Mute));
+        //GameApp.Setting.SetMediaMute(Const.SoundGroup.Vibrate, GameApp.Setting.GetMediaMute(Const.SoundGroup.Vibrate, defaultSoundGroupData[Const.SoundGroup.Vibrate.ToString()].Mute));
+        //GameApp.Setting.SetMediaMute(Const.SoundGroup.Joystick, GameApp.Setting.GetMediaMute(Const.SoundGroup.Joystick, defaultSoundGroupData[Const.SoundGroup.Joystick.ToString()].Mute));
 
-        //GF.Setting.SetMediaVolume(Const.SoundGroup.Music, GF.Setting.GetMediaVolume(Const.SoundGroup.Music, defaultSoundGroupData[Const.SoundGroup.Music.ToString()].Volume));
-        //GF.Setting.SetMediaVolume(Const.SoundGroup.Sound, GF.Setting.GetMediaVolume(Const.SoundGroup.Sound, defaultSoundGroupData[Const.SoundGroup.Sound.ToString()].Volume));
+        //GameApp.Setting.SetMediaVolume(Const.SoundGroup.Music, GameApp.Setting.GetMediaVolume(Const.SoundGroup.Music, defaultSoundGroupData[Const.SoundGroup.Music.ToString()].Volume));
+        //GameApp.Setting.SetMediaVolume(Const.SoundGroup.Sound, GameApp.Setting.GetMediaVolume(Const.SoundGroup.Sound, defaultSoundGroupData[Const.SoundGroup.Sound.ToString()].Volume));
     }
     /// <summary>
     /// 预加载数据表、游戏配置,以及初始化游戏数据
@@ -160,10 +160,10 @@ public class PreloadProcedure : ProcedureBase
     }
     private async void CreateGFExtension()
     {
-        var ret = await GF.Resource.LoadAssetAsync(UtilityBuiltin.AssetsPath.GetPrefab("Core/GFExtension"));
+        var ret = await GameApp.Asset.LoadAssetAsync(UtilityBuiltin.AssetsPath.GetPrefab("Core/GFExtension"));
         if (ret.IsSucceed())
         {
-            ret.InstantiateSync(GF.Base.transform);
+            ret.InstantiateSync(GameApp.Base.transform);
         }
         loadedProgress++;
         LoadConfigsAndDataTables();
@@ -195,7 +195,7 @@ public class PreloadProcedure : ProcedureBase
         var args = e as LoadDictionaryFailureEventArgs;
         if (args.UserData != this) return;
 
-        GF.LogError($"Load Dictionary Failed:{args.ErrorMessage}");
+        Log.Error($"Load Dictionary Failed:{args.ErrorMessage}");
     }
 
     private void OnLoadConfigFailure(object sender, GameEventArgs e)
@@ -203,6 +203,6 @@ public class PreloadProcedure : ProcedureBase
         var args = e as LoadConfigFailureEventArgs;
         if (args.UserData != this) return;
 
-        GF.LogError($"Load Config Failed:{args.ErrorMessage}");
+        Log.Error($"Load Config Failed:{args.ErrorMessage}");
     }
 }

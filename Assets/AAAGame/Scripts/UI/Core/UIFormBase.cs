@@ -91,7 +91,7 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     public override void OnUpdate(float elapseSeconds, float realElapseSeconds)
     {
         base.OnUpdate(elapseSeconds, realElapseSeconds);
-        if (isOnEscape && Input.GetKeyDown(KeyCode.Escape) && GF.UI.GetTopUIFormId() == this.SerialId)
+        if (isOnEscape && Input.GetKeyDown(KeyCode.Escape) && GameApp.UI.GetTopUIFormId() == this.SerialId)
         {
             this.OnClickClose();
         }
@@ -127,7 +127,7 @@ public class UIFormBase : UGUI, ISerializeFieldTool
         if (subUiOrder <= -1) subUiOrder = m_SubUIForms.Count;
         @params.SortOrder = Params.SortOrder + subUiOrder + 1;
         @params.IsSubUIForm = true;
-        var form = await GF.UI.OpenUIForm(viewName, @params);
+        var form = await GameApp.UI.OpenUIForm(viewName, @params);
         var uiformId = form.SerialId;
         m_SubUIForms.Add(uiformId);
         return form;
@@ -140,8 +140,8 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     {
         if (!m_SubUIForms.Contains(uiformId)) return;
         m_SubUIForms.Remove(uiformId);
-        if (GF.UI.HasUIForm(uiformId))
-            GF.UI.CloseUIForm(uiformId);
+        if (GameApp.UI.HasUIForm(uiformId))
+            GameApp.UI.CloseUIForm(uiformId);
     }
     /// <summary>
     /// 关闭全部子UI Form
@@ -174,7 +174,7 @@ public class UIFormBase : UGUI, ISerializeFieldTool
         for (int i = 0; i < m_ItemPools.Count; i++)
         {
             var item = m_ItemPools[i];
-            GF.ObjectPool.DestroyObjectPool(item);
+            GameApp.ObjectPool.DestroyObjectPool(item);
         }
         m_ItemPools.Clear();
     }
@@ -192,16 +192,16 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     {
         var itemTempleId = GetItemPoolId(itemTemple);
         IObjectPool<T> pool;
-        if (GF.ObjectPool.HasObjectPool<T>(itemTempleId))
+        if (GameApp.ObjectPool.HasObjectPool<T>(itemTempleId))
         {
-            pool = GF.ObjectPool.GetObjectPool<T>(itemTempleId);
+            pool = GameApp.ObjectPool.GetObjectPool<T>(itemTempleId);
             pool.AutoReleaseInterval = autoReleaseInterval;
             pool.Capacity = capacity;
             pool.ExpireTime = expireTime;
         }
         else
         {
-            pool = GF.ObjectPool.CreateSingleSpawnObjectPool<T>(itemTempleId, autoReleaseInterval, capacity, expireTime, 0);
+            pool = GameApp.ObjectPool.CreateSingleSpawnObjectPool<T>(itemTempleId, autoReleaseInterval, capacity, expireTime, 0);
             if (m_ItemPools == null) m_ItemPools = new List<IObjectPool<UIItemObject>>();
             m_ItemPools.Add((IObjectPool<UIItemObject>)(object)pool);
         }
@@ -238,9 +238,9 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     protected void UnspawnItem<T>(GameObject itemTemple, GameObject itemInstance) where T : UIItemObject, new()
     {
         var itemTempleId = GetItemPoolId(itemTemple);
-        if (!GF.ObjectPool.HasObjectPool<T>(itemTempleId)) return;
+        if (!GameApp.ObjectPool.HasObjectPool<T>(itemTempleId)) return;
 
-        var pool = GF.ObjectPool.GetObjectPool<T>(itemTempleId);
+        var pool = GameApp.ObjectPool.GetObjectPool<T>(itemTempleId);
         pool.Unspawn(itemInstance);
     }
     /// <summary>
@@ -251,9 +251,9 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     protected void UnspawnAllItem<T>(GameObject itemTemple) where T : UIItemObject, new()
     {
         var itemTempleId = GetItemPoolId(itemTemple);
-        if (!GF.ObjectPool.HasObjectPool<T>(itemTempleId)) return;
+        if (!GameApp.ObjectPool.HasObjectPool<T>(itemTempleId)) return;
 
-        var pool = GF.ObjectPool.GetObjectPool<T>(itemTempleId);
+        var pool = GameApp.ObjectPool.GetObjectPool<T>(itemTempleId);
         pool.ReleaseAllUnused();
         pool.UnspawnAll();
     }
@@ -267,11 +267,11 @@ public class UIFormBase : UGUI, ISerializeFieldTool
         {
             if (t.TryGetComponent<TMPro.TextMeshProUGUI>(out var textMeshCom))
             {
-                textMeshCom.text = GF.Localization.GetString(t.Key);
+                textMeshCom.text = GameApp.Localization.GetString(t.Key);
             }
             else if (t.TryGetComponent<Text>(out var textCom))
             {
-                textCom.text = GF.Localization.GetString(t.Key);
+                textCom.text = GameApp.Localization.GetString(t.Key);
             }
         }
     }
@@ -360,19 +360,19 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     //[Obfuz.ObfuzIgnore]
     public virtual void OnClickClose()
     {
-        GF.Sound.PlayEffect("ui/ui_click.wav");
-        GF.UI.Close(this);
+        GameApp.Sound.PlayEffect("ui/ui_click.wav");
+        GameApp.UI.Close(this);
     }
     //[Obfuz.ObfuzIgnore]
     public void ClickUIButton(string bt_tag)
     {
-        GF.Sound.PlayEffect("ui/ui_click.wav");
+        GameApp.Sound.PlayEffect("ui/ui_click.wav");
         OnButtonClick(this, bt_tag);
     }
     //[Obfuz.ObfuzIgnore]
     public void ClickUIButton(Button btSelf)
     {
-        GF.Sound.PlayEffect("ui/ui_click.wav");
+        GameApp.Sound.PlayEffect("ui/ui_click.wav");
         OnButtonClick(this, btSelf);
     }
     protected virtual void OnButtonClick(object sender, string btId)
@@ -394,7 +394,7 @@ public class UIFormBase : UGUI, ISerializeFieldTool
     /// </summary>
     protected virtual void OnCloseAnimationComplete()
     {
-        GF.UI.CloseUIForm(this);
+        GameApp.UI.CloseUIForm(this);
     }
 }
 

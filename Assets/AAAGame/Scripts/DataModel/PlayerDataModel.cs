@@ -56,7 +56,7 @@ public class PlayerDataModel : DataModelStorageBase
         get => GetData(PlayerDataType.LevelId);
         set
         {
-            var lvTb = GF.Config.GetConfig<TbLevelTable>();
+            var lvTb = GameApp.Config.GetConfig<TbLevelTable>();
             int nextLvId = Const.RepeatLevel ? value : Mathf.Clamp(value, lvTb.Min(a => a.ID), lvTb.Max(e => e.ID));
             SetData(PlayerDataType.LevelId, nextLvId);
         }
@@ -68,8 +68,8 @@ public class PlayerDataModel : DataModelStorageBase
 
     protected override void OnInitialDataModel()
     {
-        m_PlayerDataDic[PlayerDataType.Coins] = GF.Setting.GetInt("DefaultCoins");
-        m_PlayerDataDic[PlayerDataType.Diamond] = GF.Setting.GetInt("DefaultDiamonds");
+        m_PlayerDataDic[PlayerDataType.Coins] = GameApp.Setting.GetInt("DefaultCoins");
+        m_PlayerDataDic[PlayerDataType.Diamond] = GameApp.Setting.GetInt("DefaultDiamonds");
         m_PlayerDataDic[PlayerDataType.Hp] = 100;
         m_PlayerDataDic[PlayerDataType.Energy] = 100;
         m_PlayerDataDic[PlayerDataType.LevelId] = 1;
@@ -86,6 +86,6 @@ public class PlayerDataModel : DataModelStorageBase
         m_PlayerDataDic[tp] = value;
 
         if (triggerEvent)
-            GF.Event.Fire(this, PlayerDataChangedEventArgs.Create(tp, oldValue, value));
+            GameApp.Event.Fire(this, PlayerDataChangedEventArgs.Create(tp, oldValue, value));
     }
 }

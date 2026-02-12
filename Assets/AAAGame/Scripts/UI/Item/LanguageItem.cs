@@ -21,16 +21,16 @@ public partial class LanguageItem : UIItemBase
         m_Action = action;
         varIcon.SetSprite(row.LanguageIcon);
         varName.text = row.LanguageDisplay;
-        var isOn = (row.LanguageKey == GF.Setting.GetLanguage().ToString());
+        var isOn = (row.LanguageKey == GameApp.Setting.GetLanguage().ToString());
         m_Toggle.isOn = isOn;
         m_Toggle.graphic.gameObject.SetActive(isOn);
     }
     private void OnToggleValueChanged(bool arg0)
     {
         m_Toggle.graphic.gameObject.SetActive(arg0);
-        if (arg0 && m_LanguageKey != GF.Setting.GetLanguage().ToString())
+        if (arg0 && m_LanguageKey != GameApp.Setting.GetLanguage().ToString())
         {
-            GF.Setting.SetLanguage(m_LanguageKey);
+            GameApp.Setting.SetLanguage(m_LanguageKey);
             m_Action?.Invoke();
         }
     }

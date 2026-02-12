@@ -20,10 +20,10 @@ public class GameOverProcedure : ProcedureBase
     {
         if (!isShutdown)
         {
-            GF.UI.CloseAllLoadingUIForms();
-            GF.UI.CloseAllLoadedUIForms();
-            GF.Entity.HideAllLoadingEntities();
-            GF.Entity.HideAllLoadedEntities();
+            GameApp.UI.CloseAllLoadingUIForms();
+            GameApp.UI.CloseAllLoadedUIForms();
+            GameApp.Entity.HideAllLoadingEntities();
+            GameApp.Entity.HideAllLoadedEntities();
         }
         base.OnLeave(procedureOwner, isShutdown);
     }
@@ -34,7 +34,7 @@ public class GameOverProcedure : ProcedureBase
         {
             var gameoverParms = UIParams.Create();
             gameoverParms.Set<VarBoolean>(GameOverUIForm.P_IsWin, isWin);
-            GF.UI.OpenUIForm(UIViews.GameOverUIForm, gameoverParms);
+            GameApp.UI.OpenUIForm(UIViews.GameOverUIForm, gameoverParms);
         });
     }
 

@@ -15,7 +15,7 @@ public partial class UITopbar : UIFormBase
     public override void OnOpen(object userData)
     {
         base.OnOpen(userData);
-        GF.Event.Subscribe(PlayerDataChangedEventArgs.EventId, OnPlayerDataChanged);
+        GameApp.Event.Subscribe(PlayerDataChangedEventArgs.EventId, OnPlayerDataChanged);
 
         varBg.enabled = Params.Get<VarBoolean>(P_EnableBG, true);
         varBtnMenu.gameObject.SetActive(Params.Get<VarBoolean>(P_EnableSettingBtn, true));
@@ -28,7 +28,7 @@ public partial class UITopbar : UIFormBase
     }
     public override void OnClose(bool isShutdown, object userData)
     {
-        GF.Event.Unsubscribe(PlayerDataChangedEventArgs.EventId, OnPlayerDataChanged);
+        GameApp.Event.Unsubscribe(PlayerDataChangedEventArgs.EventId, OnPlayerDataChanged);
         base.OnClose(isShutdown, userData);
     }
     private void OnPlayerDataChanged(object sender, GameEventArgs e)
@@ -53,19 +53,19 @@ public partial class UITopbar : UIFormBase
         base.OnButtonClick(sender, btSelf);
         if (btSelf == varBtnMenu)
         {
-            GF.UI.OpenUIForm(UIViews.SettingDialog);
+            GameApp.UI.OpenUIForm(UIViews.SettingDialog);
         }
         else if (btSelf == varBtnCoin)
         {
-            GF.UI.ShowToast("加金币");
+            GameApp.UI.ShowToast("加金币");
         }
         else if (btSelf == varBtnGem)
         {
-            GF.UI.ShowToast("加钻石");
+            GameApp.UI.ShowToast("加钻石");
         }
         else if (btSelf == varBtnEnergy)
         {
-            GF.UI.ShowToast("加能量");
+            GameApp.UI.ShowToast("加能量");
         }
     }
 }

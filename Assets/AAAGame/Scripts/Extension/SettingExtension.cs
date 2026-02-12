@@ -29,7 +29,7 @@ public static class SettingExtension
     /// <param name="lan"></param>
     public static void SetLanguage(this SettingComponent com, string lan, bool saveSetting = true)
     {
-        GFBuiltin.Localization.Language = lan;
+        GameApp.Localization.Language = lan;
         com.SetString(ConstBuiltin.Setting.Language, lan.ToString());
     }
 
@@ -58,7 +58,7 @@ public static class SettingExtension
     {
         string groupName = group.ToString();
         string key = Utility.Text.Format("Sound.{0}.Mute", groupName);
-        var mediaGp = GF.Sound.GetSoundGroup(groupName);
+        var mediaGp = GameApp.Sound.GetSoundGroup(groupName);
         if (null == mediaGp)
         {
             return;
@@ -88,7 +88,7 @@ public static class SettingExtension
     {
         string groupName = group.ToString();
         string key = Utility.Text.Format("Sound.{0}.Volume", groupName);
-        var soundGp = GF.Sound.GetSoundGroup(groupName);
+        var soundGp = GameApp.Sound.GetSoundGroup(groupName);
         if (null == soundGp)
         {
             return;

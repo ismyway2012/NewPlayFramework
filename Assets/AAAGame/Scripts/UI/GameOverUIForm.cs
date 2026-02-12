@@ -20,14 +20,14 @@ public partial class GameOverUIForm : UIFormBase
         base.OnOpen(userData);
         
         isWin = Params.Get<VarBoolean>(P_IsWin);
-        varTitleTxt.text = isWin ? GF.Localization.GetString("Victory") : GF.Localization.GetString("Failed");
+        varTitleTxt.text = isWin ? GameApp.Localization.GetString("Victory") : GameApp.Localization.GetString("Failed");
     }
     protected override void OnButtonClick(object sender, Button btSelf)
     {
         base.OnButtonClick(sender, btSelf);
         if(btSelf == varBackBtn)
         {
-            (GF.Procedure.CurrentProcedure as GameOverProcedure).BackHome();
+            (GameApp.Procedure.CurrentProcedure as GameOverProcedure).BackHome();
         }
     }
 }

@@ -31,7 +31,7 @@ public static class SoundExtension
     {
         string assetName = UtilityBuiltin.AssetsPath.GetSoundPath(name);
         //TODO 临时资源存在判定
-        if (GFBuiltin.Resource.HasAssetPath(assetName) == false) return default;
+        if (GameApp.Asset.HasAssetPath(assetName) == false) return default;
         var parms = ReferencePool.Acquire<PlaySoundParams>();
         parms.Clear();
         parms.Loop = isLoop;

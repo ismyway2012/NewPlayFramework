@@ -25,12 +25,12 @@ public class MenuProcedure : ProcedureBase
         base.OnEnter(procedureOwner);
         procedure = procedureOwner;
         ShowLevel();//加载关卡
-                    //var res = await GF.WebRequest.AddWebRequestAsync("https://blog.csdn.net/final5788");
+                    //var res = await GameApp.WebRequest.AddWebRequestAsync("https://blog.csdn.net/final5788");
                     //Log.Info(Utility.Converter.GetString(res.Bytes));
 
         //连接服务器
         //var netHelper = new StarForce.NetworkChannelHelper();
-        //m_MainNetChannel = GF.Network.CreateNetworkChannel("Main", GameFramework.Network.ServiceType.TcpWithSyncReceive, netHelper);
+        //m_MainNetChannel = GameApp.Network.CreateNetworkChannel("Main", GameFramework.Network.ServiceType.TcpWithSyncReceive, netHelper);
         //m_MainNetChannel.Connect(System.Net.IPAddress.Parse("127.0.0.1"), 10000);
     }
 
@@ -47,7 +47,7 @@ public class MenuProcedure : ProcedureBase
             return;
         }
         //点击屏幕开始游戏
-        if (Input.GetMouseButtonDown(0) && !GF.UI.IsPointerOverUIObject(Input.mousePosition) && GF.UI.GetTopUIFormId() == menuUIFormId)
+        if (Input.GetMouseButtonDown(0) && !GameApp.UI.IsPointerOverUIObject(Input.mousePosition) && GameApp.UI.GetTopUIFormId() == menuUIFormId)
         {
             EnterGame();
         }
@@ -56,7 +56,7 @@ public class MenuProcedure : ProcedureBase
     {
         if (!isShutdown)
         {
-            GF.UI.CloseUIForm(menuUIFormId);
+            GameApp.UI.CloseUIForm(menuUIFormId);
         }
         base.OnLeave(procedureOwner, isShutdown);
     }
@@ -68,21 +68,21 @@ public class MenuProcedure : ProcedureBase
     public async void ShowLevel()
     {
         lvEntity = null;
-        if (GF.Base.IsGamePaused)
+        if (GameApp.Base.IsGamePaused)
         {
-            GF.Base.ResumeGame();
+            GameApp.Base.ResumeGame();
         }
-        GF.UI.CloseAllLoadingUIForms();
-        GF.UI.CloseAllLoadedUIForms();
-        GF.Entity.HideAllLoadingEntities();
-        GF.Entity.HideAllLoadedEntities();
+        GameApp.UI.CloseAllLoadingUIForms();
+        GameApp.UI.CloseAllLoadedUIForms();
+        GameApp.Entity.HideAllLoadingEntities();
+        GameApp.Entity.HideAllLoadedEntities();
 
         //异步打开主菜单UI
-        var menuForm = await GF.UI.OpenUIForm(UIViews.MenuUIForm);
+        var menuForm = await GameApp.UI.OpenUIForm(UIViews.MenuUIForm);
         menuUIFormId = menuForm.SerialId;
 
         //动态创建关卡
-        var lvTb = GF.Config.GetConfig<TbLevelTable>();
+        var lvTb = GameApp.Config.GetConfig<TbLevelTable>();
         var playerMd = GF.DataModel.GetOrCreate<PlayerDataModel>();
         var lvRow = lvTb.Get(playerMd.LevelId);
 
@@ -90,8 +90,8 @@ public class MenuProcedure : ProcedureBase
         lvParams.Set(LevelEntity.P_LevelData, lvRow);
 
         var lvPrefab = UtilityBuiltin.AssetsPath.GetPrefab($"Entity/{lvRow.LvPfbName}");
-        Entity entity = await GF.Entity.ShowEntityAsync<LevelEntity>(lvParams.Id, lvPrefab, Const.EntityGroup.Level.ToString(), lvParams) as Entity;
+        Entity entity = await GameApp.Entity.ShowEntityAsync<LevelEntity>(lvParams.Id, lvPrefab, Const.EntityGroup.Level.ToString(), lvParams) as Entity;
         lvEntity = entity.Logic as LevelEntity;
-        //GF.BuiltinView.HideLoadingProgress();
+        //GameApp.BuiltinView.HideLoadingProgress();
     }
 }

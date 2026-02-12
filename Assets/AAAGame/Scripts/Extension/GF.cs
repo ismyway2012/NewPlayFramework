@@ -1,7 +1,6 @@
 using GameFrameX.Runtime;
 using System;
 using UnityEngine;
-using GameFrameX.Runtime;
 
 public class GF : GFBuiltin
 {
@@ -45,10 +44,10 @@ public class GF : GFBuiltin
     }
     private void OnExitGame()
     {
-        GF.Event.FireNow(this, GFEventArgs.Create(GFEventType.ApplicationQuit));
+        GameApp.Event.FireNow(this, GFEventArgs.Create(GFEventType.ApplicationQuit));
         var exit_time = DateTime.UtcNow.ToString();
-        GF.Setting.SetString(ConstBuiltin.Setting.QuitAppTime, exit_time);
-        GF.Setting.Save();
+        GameApp.Setting.SetString(ConstBuiltin.Setting.QuitAppTime, exit_time);
+        GameApp.Setting.Save();
         GameFrameX.Runtime.Log.Info("Application Quit:{0}", exit_time);
     }
 }

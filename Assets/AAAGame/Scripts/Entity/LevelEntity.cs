@@ -30,8 +30,8 @@ public class LevelEntity : EntityBase
     protected override async void OnShow(object userData)
     {
         base.OnShow(userData);
-        GF.Event.Subscribe(ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
-        GF.Event.Subscribe(HideEntityCompleteEventArgs.EventId, OnHideEntityComplete);
+        GameApp.Event.Subscribe(ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
+        GameApp.Event.Subscribe(HideEntityCompleteEventArgs.EventId, OnHideEntityComplete);
         m_PlayerEntity = null;
         m_IsGameOver = false;
         IsAllReady = false;
@@ -40,14 +40,14 @@ public class LevelEntity : EntityBase
         m_Enemies.Clear();
         CachedTransform.Find("EnemySpawnPoints").GetComponentsInChildren<Spawnner>(m_Spawnners);
 
-        var combatUnitTb = GF.Config.GetConfig<TbCombatUnitTable>();
+        var combatUnitTb = GameApp.Config.GetConfig<TbCombatUnitTable>();
         var playerRow = combatUnitTb.Get(0);
         var playerParams = EntityParams.Create(playerSpawnPoint.position, playerSpawnPoint.eulerAngles);
         playerParams.Set(PlayerEntity.P_DataTableRow, playerRow);
         playerParams.Set<VarInt32>(PlayerEntity.P_CombatFlag, (int)CombatUnitEntity.CombatFlag.Player);
         playerParams.Set<VarAction>(PlayerEntity.P_OnBeKilled, (Action)OnPlayerBeKilled);
         var playerPrefab = UtilityBuiltin.AssetsPath.GetPrefab($"Entity/{playerRow.PrefabName}");
-        Entity entity = await GF.Entity.ShowEntityAsync<PlayerEntity>(playerParams.Id, playerPrefab, Const.EntityGroup.Player.ToString(), playerParams) as Entity;
+        Entity entity = await GameApp.Entity.ShowEntityAsync<PlayerEntity>(playerParams.Id, playerPrefab, Const.EntityGroup.Player.ToString(), playerParams) as Entity;
         m_PlayerEntity = entity.Logic as PlayerEntity;
         CameraController.Instance.SetFollowTarget(m_PlayerEntity.CachedTransform);
         IsAllReady = true;
@@ -62,8 +62,8 @@ public class LevelEntity : EntityBase
     }
     protected override void OnHide(bool isShutdown, object userData)
     {
-        GF.Event.Unsubscribe(ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
-        GF.Event.Unsubscribe(HideEntityCompleteEventArgs.EventId, OnHideEntityComplete);
+        GameApp.Event.Unsubscribe(ShowEntitySuccessEventArgs.EventId, OnShowEntitySuccess);
+        GameApp.Event.Unsubscribe(HideEntityCompleteEventArgs.EventId, OnHideEntityComplete);
 
         base.OnHide(isShutdown, userData);
     }
@@ -98,7 +98,7 @@ public class LevelEntity : EntityBase
         m_IsGameOver = true;
         var eParms = RefParams.Create();
         eParms.Set<VarBoolean>("IsWin", false);
-        GF.Event.Fire(GameplayEventArgs.EventId, GameplayEventArgs.Create(GameplayEventType.GameOver, eParms));
+        GameApp.Event.Fire(GameplayEventArgs.EventId, GameplayEventArgs.Create(GameplayEventType.GameOver, eParms));
     }
     private void CheckGameOver()
     {
@@ -108,7 +108,7 @@ public class LevelEntity : EntityBase
             m_IsGameOver = true;
             var eParms = RefParams.Create();
             eParms.Set<VarBoolean>("IsWin", true);
-            GF.Event.Fire(GameplayEventArgs.EventId, GameplayEventArgs.Create(GameplayEventType.GameOver, eParms));
+            GameApp.Event.Fire(GameplayEventArgs.EventId, GameplayEventArgs.Create(GameplayEventType.GameOver, eParms));
         }
     }
     private void OnShowEntitySuccess(object sender, GameEventArgs e)
