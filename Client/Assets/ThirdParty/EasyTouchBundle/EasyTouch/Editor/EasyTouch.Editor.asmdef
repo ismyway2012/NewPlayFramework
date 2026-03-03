@@ -1,0 +1,16 @@
+{
+    "name": "EasyTouch.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1ecea6e1f7ff75f40b34acfa0e0748a1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,16 @@
+{
+    "name": "EasyTouchControls.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f70a2489bbc128d49b34e19bd972745f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
