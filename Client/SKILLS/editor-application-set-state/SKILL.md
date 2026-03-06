@@ -14,7 +14,7 @@ Control the Unity Editor application state. You can start, stop, or pause the 'p
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/editor-application-set-state \
+curl -X POST http://localhost:54688/api/tools/editor-application-set-state \
   -H "Content-Type: application/json" \
   -d '{
   "isPlaying": false,
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/editor-application-set-state \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/editor-application-set-state \
+curl -X POST http://localhost:54688/api/tools/editor-application-set-state \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

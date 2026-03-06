@@ -14,7 +14,7 @@ Captures a screenshot from a camera and returns it as an image. If no camera is 
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/screenshot-camera \
+curl -X POST http://localhost:54688/api/tools/screenshot-camera \
   -H "Content-Type: application/json" \
   -d '{
   "cameraRef": "string_value",
@@ -26,7 +26,7 @@ curl -X POST http://localhost:54689/api/tools/screenshot-camera \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/screenshot-camera \
+curl -X POST http://localhost:54688/api/tools/screenshot-camera \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

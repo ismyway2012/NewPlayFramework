@@ -14,7 +14,7 @@ Modify asset file in the project. Use 'assets-get-data' tool first to inspect th
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-modify \
+curl -X POST http://localhost:54688/api/tools/assets-modify \
   -H "Content-Type: application/json" \
   -d '{
   "assetRef": "string_value",
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/assets-modify \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-modify \
+curl -X POST http://localhost:54688/api/tools/assets-modify \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

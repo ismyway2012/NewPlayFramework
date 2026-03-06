@@ -14,7 +14,7 @@ Duplicate GameObjects in opened Prefab or in a Scene. Use 'gameobject-find' tool
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-duplicate \
+curl -X POST http://localhost:54688/api/tools/gameobject-duplicate \
   -H "Content-Type: application/json" \
   -d '{
   "gameObjectRefs": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/gameobject-duplicate \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-duplicate \
+curl -X POST http://localhost:54688/api/tools/gameobject-duplicate \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0d20f029baca6814a898487482b6b1cb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281506
+  packageName: Fast Food Rush - Hyper Casual Restaurant Management
+  packageVersion: 1.1.0
+  assetPath: Assets/FastFoodRush/Prefabs/UI/SettingsWindow.prefab
+  uploadId: 736741

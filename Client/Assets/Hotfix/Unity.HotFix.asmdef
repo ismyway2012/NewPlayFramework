@@ -49,7 +49,12 @@
         "Unity.RenderPipelines.Universal.Runtime",
         "Unity.RenderPipelines.Core.Runtime",
         "EasyTouch.Runtime",
-        "EasyTouchControls.Runtime"
+        "EasyTouchControls.Runtime",
+        "Unity.Cinemachine",
+        "MoreMountains.TopDownEngine",
+        "MoreMountains.Tools",
+        "MoreMountains.TopDownEngine.InputSystem",
+        "SimpleInput.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

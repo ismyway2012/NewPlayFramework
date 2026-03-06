@@ -14,7 +14,7 @@ Modify GameObject fields and properties in opened Prefab or in a Scene. You can 
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-modify \
+curl -X POST http://localhost:54688/api/tools/gameobject-modify \
   -H "Content-Type: application/json" \
   -d '{
   "gameObjectRefs": "string_value",
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/gameobject-modify \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-modify \
+curl -X POST http://localhost:54688/api/tools/gameobject-modify \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

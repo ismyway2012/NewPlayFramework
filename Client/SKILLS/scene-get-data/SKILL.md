@@ -14,7 +14,7 @@ This tool retrieves the list of root GameObjects in the specified scene. Use 'sc
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/scene-get-data \
+curl -X POST http://localhost:54688/api/tools/scene-get-data \
   -H "Content-Type: application/json" \
   -d '{
   "openedSceneName": "string_value",
@@ -28,7 +28,7 @@ curl -X POST http://localhost:54689/api/tools/scene-get-data \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/scene-get-data \
+curl -X POST http://localhost:54688/api/tools/scene-get-data \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e5f577e08a2524f40a9c0e94b323d5db
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281506
+  packageName: Fast Food Rush - Hyper Casual Restaurant Management
+  packageVersion: 1.1.0
+  assetPath: Assets/FastFoodRush/Animations/Animators/CustomerAnimator.controller
+  uploadId: 736741

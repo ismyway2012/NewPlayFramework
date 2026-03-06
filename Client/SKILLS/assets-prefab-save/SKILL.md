@@ -14,7 +14,7 @@ Save a prefab. Use it when you are in prefab editing mode in Unity Editor. Use '
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-prefab-save \
+curl -X POST http://localhost:54688/api/tools/assets-prefab-save \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -22,7 +22,7 @@ curl -X POST http://localhost:54689/api/tools/assets-prefab-save \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-prefab-save \
+curl -X POST http://localhost:54688/api/tools/assets-prefab-save \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{}'

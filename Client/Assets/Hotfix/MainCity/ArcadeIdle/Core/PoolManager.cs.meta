@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 5eb885537f9e2aa41adc4817af62f186
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281506
+  packageName: Fast Food Rush - Hyper Casual Restaurant Management
+  packageVersion: 1.1.0
+  assetPath: Assets/FastFoodRush/Scripts/Core/PoolManager.cs
+  uploadId: 736741

@@ -14,7 +14,7 @@ Returns available information about 'UnityEditor.EditorApplication'. Use it to g
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/editor-application-get-state \
+curl -X POST http://localhost:54688/api/tools/editor-application-get-state \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -22,7 +22,7 @@ curl -X POST http://localhost:54689/api/tools/editor-application-get-state \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/editor-application-get-state \
+curl -X POST http://localhost:54688/api/tools/editor-application-get-state \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{}'

@@ -14,7 +14,7 @@ Add Component to GameObject in opened Prefab or in a Scene. Use 'gameobject-find
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-component-add \
+curl -X POST http://localhost:54688/api/tools/gameobject-component-add \
   -H "Content-Type: application/json" \
   -d '{
   "componentNames": "string_value",
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/gameobject-component-add \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-component-add \
+curl -X POST http://localhost:54688/api/tools/gameobject-component-add \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

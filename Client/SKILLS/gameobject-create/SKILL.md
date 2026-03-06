@@ -14,7 +14,7 @@ Create a new GameObject in opened Prefab or in a Scene. If needed - provide prop
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-create \
+curl -X POST http://localhost:54688/api/tools/gameobject-create \
   -H "Content-Type: application/json" \
   -d '{
   "name": "string_value",
@@ -30,7 +30,7 @@ curl -X POST http://localhost:54689/api/tools/gameobject-create \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-create \
+curl -X POST http://localhost:54688/api/tools/gameobject-create \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

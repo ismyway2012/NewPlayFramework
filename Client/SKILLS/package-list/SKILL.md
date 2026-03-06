@@ -14,7 +14,7 @@ List all packages installed in the Unity project (UPM packages). Returns informa
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/package-list \
+curl -X POST http://localhost:54688/api/tools/package-list \
   -H "Content-Type: application/json" \
   -d '{
   "sourceFilter": "string_value",
@@ -26,7 +26,7 @@ curl -X POST http://localhost:54689/api/tools/package-list \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/package-list \
+curl -X POST http://localhost:54688/api/tools/package-list \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

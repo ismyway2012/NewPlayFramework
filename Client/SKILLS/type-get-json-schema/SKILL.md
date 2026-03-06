@@ -14,7 +14,7 @@ Generates a JSON Schema for a given C# type name using reflection. Supports prim
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/type-get-json-schema \
+curl -X POST http://localhost:54688/api/tools/type-get-json-schema \
   -H "Content-Type: application/json" \
   -d '{
   "typeName": "string_value",
@@ -28,7 +28,7 @@ curl -X POST http://localhost:54689/api/tools/type-get-json-schema \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/type-get-json-schema \
+curl -X POST http://localhost:54688/api/tools/type-get-json-schema \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

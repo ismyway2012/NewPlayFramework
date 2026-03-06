@@ -14,7 +14,7 @@ Creates a new folder in the specified parent folder. The parent folder string mu
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-create-folder \
+curl -X POST http://localhost:54688/api/tools/assets-create-folder \
   -H "Content-Type: application/json" \
   -d '{
   "inputs": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/assets-create-folder \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-create-folder \
+curl -X POST http://localhost:54688/api/tools/assets-create-folder \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

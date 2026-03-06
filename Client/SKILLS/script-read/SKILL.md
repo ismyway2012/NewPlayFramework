@@ -14,7 +14,7 @@ Reads the content of a script file and returns it as a string. Use 'script-updat
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/script-read \
+curl -X POST http://localhost:54688/api/tools/script-read \
   -H "Content-Type: application/json" \
   -d '{
   "filePath": "string_value",
@@ -26,7 +26,7 @@ curl -X POST http://localhost:54689/api/tools/script-read \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/script-read \
+curl -X POST http://localhost:54688/api/tools/script-read \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

@@ -14,7 +14,7 @@ Create new scene in the project assets. Use 'scene-list-opened' tool to list all
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/scene-create \
+curl -X POST http://localhost:54688/api/tools/scene-create \
   -H "Content-Type: application/json" \
   -d '{
   "path": "string_value",
@@ -26,7 +26,7 @@ curl -X POST http://localhost:54689/api/tools/scene-create \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/scene-create \
+curl -X POST http://localhost:54688/api/tools/scene-create \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

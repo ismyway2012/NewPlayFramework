@@ -14,7 +14,7 @@ Modify the specified Unity Object. Allows direct modification of object fields a
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/object-modify \
+curl -X POST http://localhost:54688/api/tools/object-modify \
   -H "Content-Type: application/json" \
   -d '{
   "objectRef": "string_value",
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/object-modify \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/object-modify \
+curl -X POST http://localhost:54688/api/tools/object-modify \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

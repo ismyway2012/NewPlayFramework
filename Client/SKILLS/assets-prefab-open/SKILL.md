@@ -14,7 +14,7 @@ Open prefab edit mode for a specific GameObject. In the Edit mode you can modify
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-prefab-open \
+curl -X POST http://localhost:54688/api/tools/assets-prefab-open \
   -H "Content-Type: application/json" \
   -d '{
   "gameObjectRef": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/assets-prefab-open \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-prefab-open \
+curl -X POST http://localhost:54688/api/tools/assets-prefab-open \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

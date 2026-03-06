@@ -14,7 +14,7 @@ Delete the assets at paths from the project. Does AssetDatabase.Refresh() at the
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-delete \
+curl -X POST http://localhost:54688/api/tools/assets-delete \
   -H "Content-Type: application/json" \
   -d '{
   "paths": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/assets-delete \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-delete \
+curl -X POST http://localhost:54688/api/tools/assets-delete \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

@@ -14,7 +14,7 @@ Install a package from the Unity Package Manager registry, Git URL, or local pat
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/package-add \
+curl -X POST http://localhost:54688/api/tools/package-add \
   -H "Content-Type: application/json" \
   -d '{
   "packageId": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/package-add \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/package-add \
+curl -X POST http://localhost:54688/api/tools/package-add \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

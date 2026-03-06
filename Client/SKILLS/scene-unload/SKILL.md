@@ -14,7 +14,7 @@ Unload scene from the Opened scenes in Unity Editor. Use 'scene-list-opened' too
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/scene-unload \
+curl -X POST http://localhost:54688/api/tools/scene-unload \
   -H "Content-Type: application/json" \
   -d '{
   "name": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/scene-unload \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/scene-unload \
+curl -X POST http://localhost:54688/api/tools/scene-unload \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

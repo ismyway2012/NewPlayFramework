@@ -14,7 +14,7 @@ Search the built-in assets of the Unity Editor located in the built-in resources
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-find-built-in \
+curl -X POST http://localhost:54688/api/tools/assets-find-built-in \
   -H "Content-Type: application/json" \
   -d '{
   "name": "string_value",
@@ -26,7 +26,7 @@ curl -X POST http://localhost:54689/api/tools/assets-find-built-in \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-find-built-in \
+curl -X POST http://localhost:54688/api/tools/assets-find-built-in \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

@@ -14,7 +14,7 @@ Remove (uninstall) a package from the Unity project. This removes the package fr
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/package-remove \
+curl -X POST http://localhost:54688/api/tools/package-remove \
   -H "Content-Type: application/json" \
   -d '{
   "packageId": "string_value"
@@ -24,7 +24,7 @@ curl -X POST http://localhost:54689/api/tools/package-remove \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/package-remove \
+curl -X POST http://localhost:54688/api/tools/package-remove \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

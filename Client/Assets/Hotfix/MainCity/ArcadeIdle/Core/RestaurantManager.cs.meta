@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2fdc4a2974c3ee04cb5ae1c47fbe569c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: -10
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281506
+  packageName: Fast Food Rush - Hyper Casual Restaurant Management
+  packageVersion: 1.1.0
+  assetPath: Assets/FastFoodRush/Scripts/Core/RestaurantManager.cs
+  uploadId: 736741

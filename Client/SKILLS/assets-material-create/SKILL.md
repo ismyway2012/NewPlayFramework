@@ -14,7 +14,7 @@ Create new material asset with default parameters. Creates folders recursively i
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-material-create \
+curl -X POST http://localhost:54688/api/tools/assets-material-create \
   -H "Content-Type: application/json" \
   -d '{
   "assetPath": "string_value",
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/assets-material-create \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-material-create \
+curl -X POST http://localhost:54688/api/tools/assets-material-create \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

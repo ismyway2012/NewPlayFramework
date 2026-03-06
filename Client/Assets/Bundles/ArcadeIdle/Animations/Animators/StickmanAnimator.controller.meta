@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 65ca6621736a00142aa31212d4840663
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281506
+  packageName: Fast Food Rush - Hyper Casual Restaurant Management
+  packageVersion: 1.1.0
+  assetPath: Assets/FastFoodRush/Animations/Animators/StickmanAnimator.controller
+  uploadId: 736741

@@ -14,7 +14,7 @@ Get information about the current Selection in the Unity Editor. Use 'editor-sel
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/editor-selection-get \
+curl -X POST http://localhost:54688/api/tools/editor-selection-get \
   -H "Content-Type: application/json" \
   -d '{
   "includeGameObjects": false,
@@ -29,7 +29,7 @@ curl -X POST http://localhost:54689/api/tools/editor-selection-get \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/editor-selection-get \
+curl -X POST http://localhost:54688/api/tools/editor-selection-get \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e61d3e4ce49a22245bfc051ad6c8dafc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281506
+  packageName: Fast Food Rush - Hyper Casual Restaurant Management
+  packageVersion: 1.1.0
+  assetPath: Assets/FastFoodRush/Scripts/Controllers/CameraController.cs
+  uploadId: 736741

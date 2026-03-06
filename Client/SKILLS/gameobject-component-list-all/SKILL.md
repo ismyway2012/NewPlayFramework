@@ -14,7 +14,7 @@ List C# class names extended from UnityEngine.Component. Use this to find compon
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-component-list-all \
+curl -X POST http://localhost:54688/api/tools/gameobject-component-list-all \
   -H "Content-Type: application/json" \
   -d '{
   "search": "string_value",
@@ -26,7 +26,7 @@ curl -X POST http://localhost:54689/api/tools/gameobject-component-list-all \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/gameobject-component-list-all \
+curl -X POST http://localhost:54688/api/tools/gameobject-component-list-all \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{

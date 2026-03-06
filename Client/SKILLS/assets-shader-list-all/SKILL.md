@@ -14,7 +14,7 @@ List all available shaders in the project assets and packages. Returns their nam
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-shader-list-all \
+curl -X POST http://localhost:54688/api/tools/assets-shader-list-all \
   -H "Content-Type: application/json" \
   -d '{}'
 ```
@@ -22,7 +22,7 @@ curl -X POST http://localhost:54689/api/tools/assets-shader-list-all \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/assets-shader-list-all \
+curl -X POST http://localhost:54688/api/tools/assets-shader-list-all \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{}'

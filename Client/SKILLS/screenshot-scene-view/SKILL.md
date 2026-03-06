@@ -14,7 +14,7 @@ Captures a screenshot from the Unity Editor Scene View and returns it as an imag
 Execute this tool directly via the MCP Plugin HTTP API:
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/screenshot-scene-view \
+curl -X POST http://localhost:54688/api/tools/screenshot-scene-view \
   -H "Content-Type: application/json" \
   -d '{
   "width": 0,
@@ -25,7 +25,7 @@ curl -X POST http://localhost:54689/api/tools/screenshot-scene-view \
 #### With Authorization (if required)
 
 ```bash
-curl -X POST http://localhost:54689/api/tools/screenshot-scene-view \
+curl -X POST http://localhost:54688/api/tools/screenshot-scene-view \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -d '{
