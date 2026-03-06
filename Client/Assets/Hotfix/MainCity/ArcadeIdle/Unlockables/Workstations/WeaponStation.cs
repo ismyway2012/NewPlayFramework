@@ -38,8 +38,8 @@ namespace NewPlay.ArcadeIdle
 
         private float productionTimer;   // Tracks elapsed time for food production.
 
-        private Queue<SurvivorController> cars = new Queue<SurvivorController>();  // Queue to manage cars waiting to be served
-        private SurvivorController firstCar => cars.Peek();  // Accessor to get the first car in the queue
+        private Queue<SurvivorController> survivorQueue = new Queue<SurvivorController>();  // Queue to manage cars waiting to be served
+        private SurvivorController firstSurvivor => survivorQueue.Peek();  // Accessor to get the first car in the queue
 
         private float spawnInterval;  // Time interval between car spawns (adjusted by unlock level)
         private float serveInterval;  // Time interval between serving cars (adjusted by unlock level)
@@ -96,31 +96,31 @@ namespace NewPlay.ArcadeIdle
 
         public void AddSurvivor(SurvivorController survivor)
         {
-            cars.Enqueue(survivor);
-            AssignQueuePoint(survivor, cars.Count - 1);
+            survivorQueue.Enqueue(survivor);
+            AssignQueuePoint(survivor, survivorQueue.Count - 1);
         }
 
         public bool IsQueueFull()
         {
-            return cars.Count >= maxCars;
+            return survivorQueue.Count >= maxCars;
         }
 
         public int GetQueueCount()
         {
-            return cars.Count;
+            return survivorQueue.Count;
         }
 
         public Transform GetQueuePoint()
         {
-            Transform queuePoint = queuePoints.GetPoint(cars.Count - 1);
+            Transform queuePoint = queuePoints.GetPoint(survivorQueue.Count - 1);
             return queuePoint;
         }
 
         public void AddSurvivorQueue(SurvivorController customer)
         {
-            Transform queuePoint = queuePoints.GetPoint(cars.Count - 1);
+            Transform queuePoint = queuePoints.GetPoint(survivorQueue.Count - 1);
             customer.ExitPoint = despawnPoint.position;
-            cars.Enqueue(customer);  // Add the new car to the queue
+            survivorQueue.Enqueue(customer);  // Add the new car to the queue
             // Update the customer's position and status in the queue.
             customer.UpdateQueue(queuePoint);
         }
@@ -154,7 +154,7 @@ namespace NewPlay.ArcadeIdle
         void HandlePackageServing()
         {
             // Exit early if there are no cars or the first car has no order
-            if (cars.Count == 0 || !firstCar.HasOrder) return;
+            if (survivorQueue.Count == 0 || !firstSurvivor.HasOrder) return;
 
             serveTimer += Time.deltaTime;  // Increment serve timer
 
@@ -164,14 +164,19 @@ namespace NewPlay.ArcadeIdle
                 serveTimer = 0f;  // Reset the serve timer
 
                 // Check if there is a worker, a package in the stack, and the first car has an order
-                if (packageStack.Count > 0 && firstCar.OrderCount > 0)
+                if (packageStack.Count > 0 && firstSurvivor.OrderCount > 0 && Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
                 {
                     var package = packageStack.RemoveFromStack();  // Get a package from the stack
-                    firstCar.EquipWeapon(packageStack.StackType, package);  // Fill the order for the first car
+                    if (!firstSurvivor.EquipWeapon(packageStack.StackType, package))  // Fill the order for the first car
+                    {
+                        survivorQueue.Dequeue();  // If the car cannot equip the weapon, remove it from the queue
+                        // Update the queue for the remaining cars
+                        UpdateQueuePositions();
+                    }
                 }
 
                 // If the first car's order is complete, start finishing the service
-                if (firstCar.OrderCount == 0 && !isFinishingService)
+                if (firstSurvivor.OrderCount == 0 && !isFinishingService)
                     StartCoroutine(FinishServing());
             }
         }
@@ -204,7 +209,7 @@ namespace NewPlay.ArcadeIdle
 
             yield return new WaitForSeconds(0.5f);  // Wait for 0.5 seconds
 
-            var servedCar = cars.Dequeue();  // Dequeue the served car
+            var servedCar = survivorQueue.Dequeue();  // Dequeue the served car
             servedCar.ExitPoint = despawnPoint.position;
             servedCar.Leave();  // Make the car leave the counter
 
@@ -221,7 +226,7 @@ namespace NewPlay.ArcadeIdle
         void UpdateQueuePositions()
         {
             int index = 0;
-            foreach (var customer in cars)
+            foreach (var customer in survivorQueue)
             {
                 AssignQueuePoint(customer, index);
                 index++;

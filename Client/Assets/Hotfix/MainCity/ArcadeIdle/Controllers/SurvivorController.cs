@@ -120,7 +120,7 @@ namespace NewPlay.ArcadeIdle
             //orderInfo.ShowEating(transform, 1.5f);
         }
 
-        public void EquipWeapon(StackType type, Transform equip)
+        public bool EquipWeapon(StackType type, Transform equip)
         {
             bool hasEquipped = false;
             bool allEquipped = !EquipmentRequires.Exists(e => e.IsFull == false);
@@ -148,6 +148,7 @@ namespace NewPlay.ArcadeIdle
             {
                 StartCoroutine(Equiping(equip));
             }
+            return hasEquipped;
         }
 
         IEnumerator Equiping(Transform equip)

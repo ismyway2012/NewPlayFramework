@@ -36,8 +36,8 @@ namespace NewPlay.ArcadeIdle
         [SerializeField, Tooltip("The money pile that will receive the payment from customers.")]
         private MoneyPile moneyPile;
 
-        private Queue<SurvivorController> cars = new Queue<SurvivorController>();  // Queue to manage cars waiting to be served
-        private SurvivorController firstCar => cars.Peek();  // Accessor to get the first car in the queue
+        private Queue<SurvivorController> survivorQueue = new Queue<SurvivorController>();  // Queue to manage cars waiting to be served
+        private SurvivorController firstSurvivor => survivorQueue.Peek();  // Accessor to get the first car in the queue
 
         private float spawnInterval;  // Time interval between car spawns (adjusted by unlock level)
         private float serveInterval;  // Time interval between serving cars (adjusted by unlock level)
@@ -81,35 +81,35 @@ namespace NewPlay.ArcadeIdle
             spawnTimer += Time.deltaTime;  // Increment spawn timer
 
             // Spawn a new car if the spawn timer has elapsed and the queue isn't full
-            if (spawnTimer >= spawnInterval && cars.Count < maxCars)
+            if (spawnTimer >= spawnInterval && survivorQueue.Count < maxCars)
             {
                 spawnTimer = 0f;  // Reset the spawn timer
 
                 int rand = Random.Range(0, carPrefabs.Length);  // Randomly select a car prefab
                 var newCar = Instantiate(carPrefabs[rand], spawnPoint.position, spawnPoint.rotation);  // Spawn the new car
                 newCar.ExitPoint = despawnPoint.position;
-                cars.Enqueue(newCar);  // Add the new car to the queue
+                survivorQueue.Enqueue(newCar);  // Add the new car to the queue
                 
                 //newCar.Init(queuePoints, despawnPoint, cars.Count - 1);  // Initialize the car with the queue waypoints and despawn point
 
                 // Assign the customer to the appropriate queue position.
-                AssignQueuePoint(newCar, cars.Count - 1);
+                AssignQueuePoint(newCar, survivorQueue.Count - 1);
             }
         }
 
         public bool IsQueueFull()
         {
-            return cars.Count >= maxCars;
+            return survivorQueue.Count >= maxCars;
         }
 
         public int GetQueueCount()
         {
-            return cars.Count;
+            return survivorQueue.Count;
         }
 
         public Transform GetQueuePoint()
         {
-            int index = cars.Count == 0 ? 0 : cars.Count;
+            int index = survivorQueue.Count == 0 ? 0 : survivorQueue.Count;
             Transform queuePoint = queuePoints.GetPoint(index);
             return queuePoint;
         }
@@ -133,9 +133,9 @@ namespace NewPlay.ArcadeIdle
 
         public void AddSurvivorQueue(SurvivorController customer)
         {
-            cars.Enqueue(customer);  // Add the new car to the queue
+            survivorQueue.Enqueue(customer);  // Add the new car to the queue
             customer.ExitPoint = despawnPoint.position;
-            AssignQueuePoint(customer, cars.Count - 1);
+            AssignQueuePoint(customer, survivorQueue.Count - 1);
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace NewPlay.ArcadeIdle
         void HandlePackageServing()
         {
             // Exit early if there are no cars or the first car has no order
-            if (cars.Count == 0 || !firstCar.HasOrder) return;
+            if (survivorQueue.Count == 0 || !firstSurvivor.HasOrder) return;
 
             serveTimer += Time.deltaTime;  // Increment serve timer
 
@@ -155,16 +155,23 @@ namespace NewPlay.ArcadeIdle
                 serveTimer = 0f;  // Reset the serve timer
 
                 // Check if there is a worker, a package in the stack, and the first car has an order
-                if (hasWorker && packageStack.Count > 0 && firstCar.OrderCount > 0)
+                if (hasWorker && packageStack.Count > 0 && firstSurvivor.OrderCount > 0)
                 {
-                    var package = packageStack.RemoveFromStack();  // Get a package from the stack
-                    firstCar.FillOrder(package);  // Fill the order for the first car
+                    if (Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
+                    {
+                        var package = packageStack.RemoveFromStack();  // Get a package from the stack
+                        firstSurvivor.FillOrder(package);  // Fill the order for the first car
 
-                    CollectPayment();  // Collect payment for the order
+                        CollectPayment();  // Collect payment for the order
+                    }
+                    else
+                    {
+                        UpdateQueuePositions();// If the first car is not in position, update the queue positions to move it forward
+                    }
                 }
 
                 // If the first car's order is complete, start finishing the service
-                if (firstCar.OrderCount == 0 && !isFinishingService)
+                if (firstSurvivor.OrderCount == 0 && !isFinishingService)
                     StartCoroutine(FinishServing());
             }
         }
@@ -192,7 +199,7 @@ namespace NewPlay.ArcadeIdle
             isFinishingService = true;  // Flag that service is finishing
 
             yield return new WaitForSeconds(0.5f);  // Wait for 0.5 seconds
-            var servedCar = cars.Dequeue();  // Dequeue the served car
+            var servedCar = survivorQueue.Dequeue();  // Dequeue the served car
 
             var time = servedCar.Eat(1);
 
@@ -215,7 +222,7 @@ namespace NewPlay.ArcadeIdle
         public void UpdateQueuePositions()
         {
             int index = 0;
-            foreach (var customer in cars)
+            foreach (var customer in survivorQueue)
             {
                 AssignQueuePoint(customer, index);
                 index++;
