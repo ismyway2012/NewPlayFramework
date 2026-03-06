@@ -70,7 +70,7 @@ MonoBehaviour:
   stackType: 1
   length: 1
   width: 2
-  spacing: {x: 0.5, y: 0.35, z: 0.5}
+  spacing: {x: 0.5, y: 0, z: 0.5}
   dropInterval: 0.05
 --- !u!1 &6301611135131805306
 GameObject:
