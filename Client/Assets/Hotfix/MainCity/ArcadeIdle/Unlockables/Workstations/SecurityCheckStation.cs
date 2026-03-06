@@ -157,17 +157,17 @@ namespace NewPlay.ArcadeIdle
                 // Check if there is a worker, a package in the stack, and the first car has an order
                 if (hasWorker && packageStack.Count > 0 && firstSurvivor.OrderCount > 0)
                 {
-                    if (Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
+                    //if (Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
                     {
                         var package = packageStack.RemoveFromStack();  // Get a package from the stack
                         firstSurvivor.FillOrder(package);  // Fill the order for the first car
 
                         CollectPayment();  // Collect payment for the order
                     }
-                    else
-                    {
-                        UpdateQueuePositions();// If the first car is not in position, update the queue positions to move it forward
-                    }
+                    //else
+                    //{
+                    //    UpdateQueuePositions();// If the first car is not in position, update the queue positions to move it forward
+                    //}
                 }
 
                 // If the first car's order is complete, start finishing the service

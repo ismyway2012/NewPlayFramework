@@ -119,30 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &18653866 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3590836204211155839, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-    type: 3}
-  m_PrefabInstance: {fileID: 2275848623745468571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92bf4d4f229c5564c81005cfadf95ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.HotFix::AIDecisionArrived
---- !u!114 &18653877 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4140182921079896712, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-    type: 3}
-  m_PrefabInstance: {fileID: 2275848623745468571}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78c77c71de934d5409ac7258ff688672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MoreMountains.TopDownEngine::MoreMountains.TopDownEngine.AIDecisionNextFrame
 --- !u!1001 &69435394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15444,75 +15420,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[7].StateName
-      value: ToBattleZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[8].StateName
-      value: Leave
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[6].Transitions.array.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[7].Transitions.array.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[8].Transitions.array.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[6].Transitions.array.Array.data[0].Decision
-      value: 
-      objectReference: {fileID: 18653877}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[7].Transitions.array.Array.data[0].Decision
-      value: 
-      objectReference: {fileID: 18653866}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[8].Transitions.array.Array.data[0].Decision
-      value: 
-      objectReference: {fileID: 18653866}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[6].Transitions.array.Array.data[0].TrueState
-      value: ToBattleZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[7].Transitions.array.Array.data[0].TrueState
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3148744596379730450, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: States.Array.data[8].Transitions.array.Array.data[0].TrueState
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3871300154854026602, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
         type: 3}
       propertyPath: m_Name
       value: Survivor
-      objectReference: {fileID: 0}
-    - target: {fileID: 3871300154854026602, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4535773907303364560, guid: 640c5d59a3f083f4bb2bf97771e5dd84,
         type: 3}
