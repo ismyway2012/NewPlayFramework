@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace NewPlay.ArcadeIdle
@@ -33,6 +34,8 @@ namespace NewPlay.ArcadeIdle
         // The type of product this workstation produces (in this case, weapons).
         public StackType ProductType => packageStack.StackType;
 
+        public int ProductCount => packageStack.Count;
+
         [SerializeField, Tooltip("The money pile that will receive the payment from customers.")]
         private MoneyPile moneyPile;
 
@@ -54,6 +57,24 @@ namespace NewPlay.ArcadeIdle
         {
             HandleWeaponProduction();
             HandlePackageServing();  // Handle serving packages to the cars in the queue
+        }
+
+        /// <summary>
+        /// Determines whether the current product count meets the equipment requirements for the specified survivor and
+        /// all other survivors in the queue.
+        /// </summary>
+        /// <remarks>This method calculates the total equipment needs for the specified survivor and all
+        /// other survivors in the queue, considering only requirements matching the current product type. Ensure that
+        /// the product count is up to date before calling this method to obtain accurate results.</remarks>
+        /// <param name="survivor">The survivor whose equipment requirements are evaluated against the available product count. Cannot be null.</param>
+        /// <returns>true if the available product count satisfies the total equipment requirements for the specified survivor
+        /// and all other survivors in the queue; otherwise, false.</returns>
+        public bool IsSatisfied(SurvivorController survivor)
+        {
+            int neededCount = survivor.EquipmentRequires.Sum(req => req.type == ProductType ? req.amount - req.hasAmount : 0);
+            int allNeededCount = survivorQueue.Sum(e => e == survivor ? 0 : e.EquipmentRequires.Sum(req => req.type == ProductType ? req.amount - req.hasAmount : 0)) + neededCount;
+
+            return ProductCount >= allNeededCount;
         }
 
         /// <summary>
@@ -112,13 +133,18 @@ namespace NewPlay.ArcadeIdle
 
         public Transform GetQueuePoint()
         {
-            Transform queuePoint = queuePoints.GetPoint(survivorQueue.Count - 1);
+            Transform queuePoint = queuePoints.GetPoint(survivorQueue.Count);
             return queuePoint;
         }
 
         public void AddSurvivorQueue(SurvivorController customer)
         {
-            Transform queuePoint = queuePoints.GetPoint(survivorQueue.Count - 1);
+            if (survivorQueue.Contains(customer))
+            {
+                return;
+            }
+            Debug.LogError($"AddSurvivorQueue >>> AddSurvivorQueue: {survivorQueue.Count}, {customer.GetInstanceID()}");
+            Transform queuePoint = queuePoints.GetPoint(survivorQueue.Count);
             customer.ExitPoint = despawnPoint.position;
             survivorQueue.Enqueue(customer);  // Add the new car to the queue
             // Update the customer's position and status in the queue.
@@ -130,6 +156,7 @@ namespace NewPlay.ArcadeIdle
         /// </summary>
         void AssignQueuePoint(SurvivorController customer, int index)
         {
+            Debug.LogError($"WeaponStation >>> AssignQueuePoint: {index}, {customer.GetInstanceID()}");
             Transform queuePoint = queuePoints.GetPoint(index);
             bool isFirst = index == 0;
 
@@ -151,7 +178,7 @@ namespace NewPlay.ArcadeIdle
         /// Handles serving packages to the cars in the queue.
         /// Serves packages to the first car in the queue if the car has an order and the worker is available.
         /// </summary>
-        void HandlePackageServing()
+        public void HandlePackageServing()
         {
             // Exit early if there are no cars or the first car has no order
             if (survivorQueue.Count == 0 || !firstSurvivor.HasOrder) return;
@@ -164,24 +191,23 @@ namespace NewPlay.ArcadeIdle
                 serveTimer = 0f;  // Reset the serve timer
 
                 // Check if there is a worker, a package in the stack, and the first car has an order
-                if (packageStack.Count > 0 && firstSurvivor.OrderCount > 0 && Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
+                if (packageStack.Count > 0 && !firstSurvivor.IsEquipSatisfied(packageStack.StackType) && Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
                 {
                     var package = packageStack.RemoveFromStack();  // Get a package from the stack
-                    if (!firstSurvivor.EquipWeapon(packageStack.StackType, package))  // Fill the order for the first car
-                    {
-                        survivorQueue.Dequeue();  // If the car cannot equip the weapon, remove it from the queue
-                        // Update the queue for the remaining cars
-                        UpdateQueuePositions();
-                    }
+                    firstSurvivor.EquipWeapon(packageStack.StackType, package);
+                    //if (!firstSurvivor.EquipWeapon(packageStack.StackType, package))  // Fill the order for the first car
+                    //{
+                    //    survivorQueue.Dequeue();  // If the car cannot equip the weapon, remove it from the queue
+                    //    // Update the queue for the remaining cars
+                    //    UpdateQueuePositions();
+                    //}
                 }
 
                 // If the first car's order is complete, start finishing the service
-                if (firstSurvivor.OrderCount == 0 && !isFinishingService)
+                if (firstSurvivor.IsEquipSatisfied(packageStack.StackType) && !isFinishingService)
                     StartCoroutine(FinishServing());
             }
         }
-
-        public 
 
         /// <summary>
         /// Collects the payment for the order from the customer.

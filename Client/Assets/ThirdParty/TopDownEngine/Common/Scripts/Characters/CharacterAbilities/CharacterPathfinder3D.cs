@@ -162,7 +162,7 @@ namespace MoreMountains.TopDownEngine
 		public virtual void StopPathfinding()
 		{
 			ShouldMoveToTarget = false;
-			_characterMovement.SetMovement(Vector3.zero);
+			_characterMovement?.SetMovement(Vector3.zero);
 		}
 
 		public virtual void CleanTarget()
@@ -273,13 +273,13 @@ namespace MoreMountains.TopDownEngine
 			NavMesh.CalculatePath(startingPosition, targetPosition, AreaMask, AgentPath);
 			return AgentPath.status == NavMeshPathStatus.PathComplete;
 		}
-		
-		/// <summary>
-		/// Returns the closest position on the navmesh to the specified position
-		/// </summary>
-		/// <param name="somePosition"></param>
-		/// <returns></returns>
-		protected virtual Vector3 FindClosestPositionOnNavmesh(Vector3 somePosition)
+
+        /// <summary>
+        /// Returns the closest position on the navmesh to the specified position
+        /// </summary>
+        /// <param name="somePosition"></param>
+        /// <returns></returns>
+        public virtual Vector3 FindClosestPositionOnNavmesh(Vector3 somePosition)
 		{
 			Vector3 newPosition = somePosition;
 			if (NavMesh.SamplePosition(somePosition, out _navMeshHit, ClosestPointThreshold, AreaMask))

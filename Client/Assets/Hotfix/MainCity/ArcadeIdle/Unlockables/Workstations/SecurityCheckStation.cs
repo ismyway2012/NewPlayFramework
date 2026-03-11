@@ -37,7 +37,7 @@ namespace NewPlay.ArcadeIdle
         private MoneyPile moneyPile;
 
         private Queue<SurvivorController> survivorQueue = new Queue<SurvivorController>();  // Queue to manage cars waiting to be served
-        private SurvivorController firstSurvivor => survivorQueue.Peek();  // Accessor to get the first car in the queue
+        public SurvivorController firstSurvivor => survivorQueue.Peek();  // Accessor to get the first car in the queue
 
         private float spawnInterval;  // Time interval between car spawns (adjusted by unlock level)
         private float serveInterval;  // Time interval between serving cars (adjusted by unlock level)
@@ -51,7 +51,7 @@ namespace NewPlay.ArcadeIdle
         void Update()
         {
             HandleCarSpawn();  // Manage spawning of new cars
-            HandlePackageServing();  // Handle serving packages to the cars in the queue
+            //HandlePackageServing();  // Handle serving packages to the cars in the queue
         }
 
         /// <summary>
@@ -121,7 +121,6 @@ namespace NewPlay.ArcadeIdle
         {
             Transform queuePoint = queuePoints.GetPoint(index);
             bool isFirst = index == 0;
-
             // Update the customer's position and status in the queue.
             customer.UpdateQueue(queuePoint);
 
@@ -133,6 +132,10 @@ namespace NewPlay.ArcadeIdle
 
         public void AddSurvivorQueue(SurvivorController customer)
         {
+            if (survivorQueue.Contains(customer))
+            {
+                return;
+            }
             survivorQueue.Enqueue(customer);  // Add the new car to the queue
             customer.ExitPoint = despawnPoint.position;
             AssignQueuePoint(customer, survivorQueue.Count - 1);
@@ -142,7 +145,7 @@ namespace NewPlay.ArcadeIdle
         /// Handles serving packages to the cars in the queue.
         /// Serves packages to the first car in the queue if the car has an order and the worker is available.
         /// </summary>
-        void HandlePackageServing()
+        public void HandlePackageServing()
         {
             // Exit early if there are no cars or the first car has no order
             if (survivorQueue.Count == 0 || !firstSurvivor.HasOrder) return;
@@ -157,17 +160,10 @@ namespace NewPlay.ArcadeIdle
                 // Check if there is a worker, a package in the stack, and the first car has an order
                 if (hasWorker && packageStack.Count > 0 && firstSurvivor.OrderCount > 0)
                 {
-                    //if (Vector3.Distance(firstSurvivor.transform.position, queuePoints.GetPoint(0).position) < 0.2f)
-                    {
-                        var package = packageStack.RemoveFromStack();  // Get a package from the stack
-                        firstSurvivor.FillOrder(package);  // Fill the order for the first car
+                    var package = packageStack.RemoveFromStack();  // Get a package from the stack
+                    firstSurvivor.FillOrder(package);  // Fill the order for the first car
 
-                        CollectPayment();  // Collect payment for the order
-                    }
-                    //else
-                    //{
-                    //    UpdateQueuePositions();// If the first car is not in position, update the queue positions to move it forward
-                    //}
+                    CollectPayment();  // Collect payment for the order
                 }
 
                 // If the first car's order is complete, start finishing the service
@@ -199,15 +195,23 @@ namespace NewPlay.ArcadeIdle
             isFinishingService = true;  // Flag that service is finishing
 
             yield return new WaitForSeconds(0.5f);  // Wait for 0.5 seconds
-            var servedCar = survivorQueue.Dequeue();  // Dequeue the served car
 
+
+            var servedCar = firstSurvivor;  // Dequeue the served car
             var time = servedCar.Eat(1);
 
             yield return new WaitForSeconds(time);  // Wait for 0.5 seconds
 
-
             servedCar.OrderInfo.HideInfo();
-            servedCar.ToTraining();  // Make the survivor go to training
+
+            while (!servedCar.IsEquipAlready())
+            {
+                yield return null;  // Wait until the survivor is ready to equip
+            }
+            survivorQueue.Dequeue();  // Remove the served car from the queue
+
+            //servedCar.ToTraining();  // Make the survivor go to training
+            servedCar.SurvivorState = SurvivorState.Checked;
 
             // Update the queue for the remaining cars
             UpdateQueuePositions();
@@ -216,6 +220,7 @@ namespace NewPlay.ArcadeIdle
 
             isFinishingService = false;  // Reset the finishing service flag
         }
+
         /// <summary>
         /// Updates the queue positions of all customers after a customer is served.
         /// </summary>

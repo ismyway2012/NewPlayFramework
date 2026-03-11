@@ -8,6 +8,8 @@ namespace NewPlay.ArcadeIdle
         [SerializeField, Tooltip("Reference to the UI Image that indicates the working spot's status")]
         private Image indicatorImage;
 
+        public EmployeeController Worker => stayRoles.Find(e => e != null && e.gameObject.CompareTag("Worker") && e is EmployeeController) as EmployeeController;
+
         // Property that checks if there is a worker (i.e., if the player is assigned to the spot)
         public bool HasWorker => player != null;// || stayRoles.Exists(e => e != null && e.gameObject.CompareTag("Worker"));
 
@@ -21,6 +23,12 @@ namespace NewPlay.ArcadeIdle
         protected override void OnPlayerExit()
         {
             indicatorImage.color = Color.red; // Change the indicator color to red when no worker (player) is present
+        }
+
+        protected override void OnTriggerEnter(Collider other)
+        {
+            base.OnTriggerEnter(other);
+
         }
     }
 }

@@ -109,5 +109,27 @@ namespace NewPlay.ArcadeIdle
         }
     }
 
-    public enum StackType { None, Food, Trash, Package, Weapon }  // Enum to define the type of stack
+    public enum StackType
+    {
+        None,
+        /// <summary>
+        /// 血清
+        /// </summary>
+        Serum,
+        Trash,
+        Food,
+        /// <summary>
+        /// 机枪
+        /// </summary>
+        Gun,
+        /// <summary>
+        /// 坦克
+        /// </summary>
+        Tank,
+        /// <summary>
+        /// 飞机
+        /// </summary>
+        Aircraft
+
+    }  // Enum to define the type of stack
 }

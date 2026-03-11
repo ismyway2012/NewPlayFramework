@@ -211,22 +211,22 @@ namespace NewPlay.ArcadeIdle
             return false;
         }
 
-    }
 
-    public sealed class MonsterSpawnToken : MonoBehaviour
-    {
-        private MonsterSpawner spawner;
-
-        public void Attach(MonsterSpawner owner)
+        public sealed class MonsterSpawnToken : MonoBehaviour
         {
-            spawner = owner;
-        }
+            private MonsterSpawner spawner;
 
-        private void OnDisable()
-        {
-            if (spawner != null)
+            public void Attach(MonsterSpawner owner)
             {
-                spawner.NotifyDespawn(this);
+                spawner = owner;
+            }
+
+            private void OnDisable()
+            {
+                if (spawner != null)
+                {
+                    spawner.NotifyDespawn(this);
+                }
             }
         }
     }

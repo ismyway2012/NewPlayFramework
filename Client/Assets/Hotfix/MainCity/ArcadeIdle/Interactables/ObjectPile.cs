@@ -117,7 +117,7 @@ namespace NewPlay.ArcadeIdle
             switch (stackType)
             {
                 case StackType.Food:
-                case StackType.Package:
+                case StackType.Serum:
                     AudioManager.Instance.PlaySFX(AudioID.Pop); // Play the "Pop" sound for food and package stacks.
                     break;
 

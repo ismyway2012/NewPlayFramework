@@ -19,7 +19,7 @@ namespace NewPlay.ArcadeIdle
         /// If the unlock level is greater than 1, the workstation always has a worker.
         /// Otherwise, it checks if the working spot has a worker.
         /// </summary>
-        protected virtual bool hasWorker => workingSpot.HasWorker || worker != null;
+        public virtual bool hasWorker => workingSpot.HasWorker || worker != null;
 
         /// <summary>
         /// Unlocks the workstation, enabling or disabling the worker and working spot.

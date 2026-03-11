@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,10 +18,23 @@ namespace NewPlay.ArcadeIdle
         public bool IsFull => hasAmount >= amount;
     }
 
+    public enum SurvivorState
+    {
+        UnChecked,
+        WaitingForCheck,
+        Checking, 
+        Checked,
+        WaitingForEquip,
+        Equiping,
+        Leaving,
+    }
+
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]
     public class SurvivorController : RoleController
     {
+        public SurvivorState SurvivorState { get; set; } = SurvivorState.UnChecked;
+
         [SerializeField, Tooltip("Max number of orders a customer can place")]
         private int maxOrder = 5;
 
@@ -33,11 +47,73 @@ namespace NewPlay.ArcadeIdle
         [SerializeField, Tooltip("Target transform for the right hand IK")]
         private Transform rightHandTarget;
 
-        public List<EquipmentRequire> EquipmentRequires = new List<EquipmentRequire>() { new EquipmentRequire() { type = StackType.Weapon, amount = 1 } };
+        public List<EquipmentRequire> EquipmentRequires = new List<EquipmentRequire>() { new EquipmentRequire() { type = StackType.Gun, amount = 1 } };
 
-        public bool IsRequireEquipment(StackType type)
+        /// <summary>
+        /// 是否还需要此装备
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+
+        public bool IsEquipNeeded(StackType type)
         {
             return EquipmentRequires.Exists(e => e.type == type && !e.IsFull);
+        }
+
+        /// <summary>
+        /// 需求的装备是否满足
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public bool IsEquipSatisfied(StackType type)
+        {
+            var equip = EquipmentRequires.Find(e => e.type == type);
+            if (equip == null) return true;
+            return equip.IsFull;
+        }
+
+        public bool IsEquipSatisfiedAll
+        {
+            get
+            {
+                return !EquipmentRequires.Exists(e => !e.IsFull);
+            }
+        }
+
+        public bool IsCheckFinishied
+        {
+            get
+            {
+                return SurvivorState == SurvivorState.Checked;
+            }
+        }
+
+
+        /// <summary>
+        /// 所需装备是否已经生成好了
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEquipAlready()
+        {
+            var stations = FindObjectsByType<WeaponStation>(FindObjectsSortMode.None);
+
+            WeaponStation station = null;
+            foreach (var item in stations)
+            {
+                if (item == null) continue;
+                if (item.IsQueueFull()) continue;
+                if (!IsEquipNeeded(item.ProductType)) continue;
+                if (!item.IsSatisfied(this)) continue;
+                if (station == null || item.GetQueueCount() < station.GetQueueCount())
+                {
+                    station = item;
+                }
+            }
+            if (station != null)
+            {
+                return true;
+            }
+            return false;
         }
 
 
@@ -109,7 +185,7 @@ namespace NewPlay.ArcadeIdle
         public void FillOrder(Transform food)
         {
             OrderCount--; // Decrease the order count
-            stack.AddToStack(food, StackType.Package); // Add food to the customer's stack
+            stack.AddToStack(food, StackType.Serum); // Add food to the customer's stack
 
             OrderInfo.ShowInfo(transform, OrderCount); // Update the order info display
             //orderInfo.HideInfo(); // Hide the order info as the customer begins searching for a seat
@@ -207,6 +283,7 @@ namespace NewPlay.ArcadeIdle
         /// </summary>
         public void Leave()
         {
+            OrderInfo.HideInfo();
             Debug.LogError($"Leave >>> {GetInstanceID()}, {ExitPoint}");
             agent.areaMask |= (1 << NavMesh.GetAreaFromName("Battle Zone")); // Allow the agent to walk through entrance areas
             agent.SetDestination(ExitPoint); // Set the destination to the exit

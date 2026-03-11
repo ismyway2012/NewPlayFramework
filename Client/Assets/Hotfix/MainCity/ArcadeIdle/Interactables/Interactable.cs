@@ -26,7 +26,7 @@ namespace NewPlay.ArcadeIdle
                 if (player != null) OnPlayerEnter(); // If a player is detected, triggers the OnPlayerEnter method.
             }
             var role = other.GetComponent<RoleController>();
-            if (role != null && other.CompareTag("Worker"))
+            if (role != null)
             {
                 stayRoles.Add(role);
             }
@@ -44,7 +44,7 @@ namespace NewPlay.ArcadeIdle
                 player = null; // Nullifies the player reference when the player exits the trigger.
             }
             var role = other.GetComponent<RoleController>();
-            if (role != null && other.CompareTag("Worker"))
+            if (role != null)
             {
                 stayRoles.Remove(role);
             }

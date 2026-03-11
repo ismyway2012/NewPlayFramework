@@ -228,7 +228,7 @@ namespace NewPlay.ArcadeIdle
 
         IEnumerator RefillPackage()
         {
-            currentActivity = StackType.Package; // Set the current activity to handling package refill
+            currentActivity = StackType.Serum; // Set the current activity to handling package refill
 
             // Check if the package stack exists, is active, and is not full
             var packageStack = RestaurantManager.Instance.PackageStack;

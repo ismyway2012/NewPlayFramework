@@ -25,9 +25,10 @@ public class AIActionToWeaponFactory : AIAction
     {
         base.OnEnterState();
         m_Animator.SetBool("IsMoving", true);
+        m_Station = _brain.GetMemory<WeaponStation>("WeaponStation");
         var target = m_Station.GetQueuePoint();
+        m_Agent.destination = target.position;
         _brain.SetMemory("Target", target);
-        var station = _brain.GetMemory<WeaponStation>("WeaponStation");
-        station.AddSurvivorQueue(m_Survivor);
+        m_Station.AddSurvivorQueue(m_Survivor);
     }
 }

@@ -151,7 +151,7 @@ namespace NewPlay.ArcadeIdle
             {
                 if (pile.StackType == StackType.Trash) TrashPiles.Add(pile);
                 else if (pile.StackType == StackType.Food) FoodPiles.Add(pile);
-                else if (pile.StackType == StackType.Package) PackagePile = pile;
+                else if (pile.StackType == StackType.Serum) PackagePile = pile;
             }
 
             // Find the TrashBin object in the scene and assign it to TrashBin.
@@ -164,7 +164,7 @@ namespace NewPlay.ArcadeIdle
             foreach (var stack in objectStacks)
             {
                 if (stack.StackType == StackType.Food) FoodStacks.Add(stack);
-                else if (stack.StackType == StackType.Package) PackageStack = stack;
+                else if (stack.StackType == StackType.Serum) PackageStack = stack;
             }
 
             // Initialize unlocked Unlockables based on the data (UnlockCount).
@@ -211,8 +211,8 @@ namespace NewPlay.ArcadeIdle
         {
             StackType.Food => foodOffset,
             StackType.Trash => trashOffset,
-            StackType.Package => packageOffset,
-            StackType.Weapon => foodOffset,
+            StackType.Serum => packageOffset,
+            StackType.Gun => foodOffset,
             StackType.None => 0f,
             _ => 0f
         };

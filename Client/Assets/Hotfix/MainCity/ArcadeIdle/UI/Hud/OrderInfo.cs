@@ -1,7 +1,8 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 namespace NewPlay.ArcadeIdle
 {
@@ -17,10 +18,16 @@ namespace NewPlay.ArcadeIdle
         [SerializeField, Tooltip("The text component that shows the amount for the order.")]
         private TMP_Text amountText;
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            //HideInfo(); // Ensure the order info is hidden at the start
+        }
+
         protected override void Start()
         {
             base.Start();
-            HideInfo(); // Ensure the order info is hidden at the start
         }
 
         /// <summary>
@@ -38,6 +45,7 @@ namespace NewPlay.ArcadeIdle
             bool active = amount > 0; // Determine if the amount is greater than 0
             iconImage.SetActive(active); // Set the icon's active state based on the amount
             amountText.text = active ? amount.ToString() : noneTips; // Display the amount or a message if no seat
+            amountText.gameObject.SetActive(!string.IsNullOrEmpty(amountText.text));
             fillImage.fillAmount = 0;
             fillImage.DOKill();
         }
@@ -49,6 +57,7 @@ namespace NewPlay.ArcadeIdle
 
             iconImage.SetActive(false); // Set the icon's active state based on the amount
             amountText.text = info; // Display the amount or a message if no seat
+            amountText.gameObject.SetActive(!string.IsNullOrEmpty(info));
             fillImage.DOKill();
             fillImage.fillAmount = 0;
         }
@@ -69,6 +78,7 @@ namespace NewPlay.ArcadeIdle
             this.Target = displayer; // Set the displayer's transform
             iconImage.SetActive(true);
             amountText.text = string.Empty;
+            amountText.gameObject.SetActive(false);
             fillImage.DOKill();
             fillImage.fillAmount = 0;
             fillImage.DOFillAmount(1, time).SetEase(Ease.Linear);

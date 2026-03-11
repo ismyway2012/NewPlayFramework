@@ -29,7 +29,7 @@ public class AIDecisionFindWeaponFactory : AIDecision
         {
             if (item == null) continue;
             if (item.IsQueueFull()) continue;
-            if (!survivor.IsRequireEquipment(item.ProductType)) continue;
+            if (!survivor.IsEquipNeeded(item.ProductType)) continue;
             if (checkStation == null || item.GetQueueCount() < checkStation.GetQueueCount())
             {
                 checkStation = item;

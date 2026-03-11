@@ -425,6 +425,10 @@ MonoBehaviour:
     hitEffect: 
     flySpeed: 100
     damage: 10
+  dropData:
+    maxDropNum: 0
+    dropOjbects: []
+    dropRange: 5
 --- !u!136 &5629234197955059238
 CapsuleCollider:
   m_ObjectHideFlags: 0

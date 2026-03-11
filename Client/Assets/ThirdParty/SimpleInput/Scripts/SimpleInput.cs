@@ -1,4 +1,4 @@
-﻿//#define GET_AXIS_USE_MOVE_TOWARDS
+﻿#define GET_AXIS_USE_MOVE_TOWARDS
 
 using SimpleInputNamespace;
 using System.Collections.Generic;

@@ -47,8 +47,9 @@ namespace MoreMountains.TopDownEngine
 
 			GameObject backToPatrolBeacon = new GameObject();
 			backToPatrolBeacon.name = this.gameObject.name + "BackToPatrolBeacon";
-			_backToPatrolTransform = backToPatrolBeacon.transform;			
-			_backToPatrolTransform.parent = BackToPatrolBeaconsRoot;
+			_backToPatrolTransform = backToPatrolBeacon.transform;
+			_backToPatrolTransform.SetParent(BackToPatrolBeaconsRoot, false);
+            //_backToPatrolTransform.parent = BackToPatrolBeaconsRoot;
 		}
 
 		/// <summary>
